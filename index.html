@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Portfólio Maiara Machado</title>
+<meta name="description" content="Portfólio de design instrucional e editoração digital educacional de Maiara Machado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@500&display=swap">
+<style>
+/* Layout: navegação fixa; abertura com proposta de valor e credenciais; projetos com filtro; laboratório interativo; processo; sobre; contato */
+:root{
+  --bg:#FAFBFC; --surface:#FFFFFF; --ink:#1E2A35; --muted:#55606D; --line:#E1E6EB; --soft:#EEF2F5;
+  --accent:#167C8A; --accent-ink:#FFFFFF; --accent-soft:#E3F1F3; --signal:#9A6600; --signal-soft:#F7ECD3;
+  --deep:#EAF4F5; --deep-ink:#1E2A35; --deep-muted:#55606D;
+  --ok:#2C7A4B; --ok-soft:#E0F1E6; --bad:#B3261E; --bad-soft:#FBE3E1;
+  --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0E151C; --surface:#151F29; --ink:#E5EAEF; --muted:#9BA8B5; --line:#273544; --soft:#1C2834;
+  --accent:#55B4C4; --accent-ink:#06232A; --accent-soft:#163640; --signal:#E3AC34; --signal-soft:#3A2D10;
+  --deep:#0A2C33; --deep-ink:#E5EFF1; --deep-muted:#93B4BA;
+  --ok:#62C08A; --ok-soft:#163626; --bad:#F0726A; --bad-soft:#3E1C1A; color-scheme:dark; } }
+:root[data-theme="dark"]{
+  --bg:#0E151C; --surface:#151F29; --ink:#E5EAEF; --muted:#9BA8B5; --line:#273544; --soft:#1C2834;
+  --accent:#55B4C4; --accent-ink:#06232A; --accent-soft:#163640; --signal:#E3AC34; --signal-soft:#3A2D10;
+  --deep:#0A2C33; --deep-ink:#E5EFF1; --deep-muted:#93B4BA;
+  --ok:#62C08A; --ok-soft:#163626; --bad:#F0726A; --bad-soft:#3E1C1A; color-scheme:dark; }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+a{color:var(--accent)}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--signal);outline-offset:3px;border-radius:4px}
+.skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--accent-ink);padding:8px 14px;z-index:30}
+.skip:focus{left:16px;top:16px}
+h1,h2,h3{font-family:var(--f-display);line-height:1.1;text-wrap:balance;margin:0}
+p{margin:0}
+.wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:700}
+section{padding-block:64px}
+.sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;max-width:64ch}
+.sec-head h2{font-size:clamp(1.7rem,4vw,2.5rem);letter-spacing:-.015em}
+.sec-head p{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:8px;border-radius:8px;padding:11px 18px;font-weight:700;font-size:.97rem;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface)}
+.btn:hover{background:var(--soft)}
+.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.pri:hover{filter:brightness(1.08)}
+
+/* Navegação */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px;flex-wrap:wrap;padding-block:8px}
+.mark{font-family:var(--f-display);font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none}
+.mark span{color:var(--muted);font-weight:500}
+.top nav{display:flex;gap:20px;font-size:.9rem;font-weight:700;flex-wrap:wrap}
+.top nav a{color:var(--ink);text-decoration:none}
+.top nav a:hover{color:var(--accent)}
+
+/* Abertura */
+.hero{padding-block:72px 56px}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:48px;align-items:end}
+.hero h1{font-size:clamp(2.2rem,5.4vw,3.6rem);font-weight:700;letter-spacing:-.025em;margin-top:14px}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lead{margin-top:20px;max-width:56ch;font-size:1.12rem;color:var(--muted)}
+.hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.facts{display:flex;flex-direction:column;border-left:2px solid var(--accent);padding-left:22px}
+.facts div{padding-block:12px;border-bottom:1px solid var(--line)}
+.facts div:last-child{border-bottom:0}
+.facts b{display:block;font-family:var(--f-display);font-size:1.15rem}
+.facts span{font-size:.9rem;color:var(--muted)}
+
+/* Entregas */
+.deliver{border-block:1px solid var(--line);background:var(--surface);padding-block:28px}
+.deliver ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px}
+.deliver li{display:flex;flex-direction:column;gap:2px;min-width:0}
+.deliver b{font-family:var(--f-display);font-size:.98rem}
+.deliver span{font-size:.84rem;color:var(--muted)}
+
+/* Projetos */
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.filters button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:99px;padding:7px 16px;font-size:.88rem;font-weight:700}
+.filters button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.projects{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.projects.single{grid-template-columns:minmax(0,1fr)}
+.projects.single .proj{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr)}
+.projects.single .thumb{border-bottom:0;border-right:1px solid var(--line);aspect-ratio:auto;min-height:280px}
+.proj{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
+.thumb{aspect-ratio:16/9;max-width:100%;background:var(--soft);border-bottom:1px solid var(--line);padding:20px;display:flex}
+.proj-body{padding:22px;display:flex;flex-direction:column;gap:12px;flex:1;min-width:0}
+.proj-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.fmt{font-family:var(--f-mono);font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
+.scope{font-size:.74rem;font-weight:700;border-radius:99px;padding:3px 10px;background:var(--accent-soft);color:var(--accent);white-space:nowrap}
+.badge{font-size:.72rem;font-weight:700;border-radius:99px;padding:3px 10px;background:var(--signal-soft);color:var(--signal)}
+.proj h3{font-size:1.4rem}
+.proj p.desc{color:var(--muted);font-size:.97rem}
+dl.spec{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.9rem}
+dl.spec dt{color:var(--muted);font-weight:700}
+dl.spec dd{margin:0}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-size:.78rem;background:var(--accent-soft);color:var(--ink);border-radius:6px;padding:2px 8px}
+.actions{margin-top:auto;display:flex;gap:10px;flex-wrap:wrap;padding-top:6px}
+
+/* Miniaturas em CSS */
+.m{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:8px;display:flex;overflow:hidden;min-width:0}
+.m .side{width:26%;border-right:1px solid var(--line);padding:10px;display:flex;flex-direction:column;gap:6px}
+.m .side i{height:7px;border-radius:3px;background:var(--line)}
+.m .side i.on{background:var(--accent)}
+.m .main{flex:1;padding:12px;display:flex;flex-direction:column;gap:7px;min-width:0}
+.m .h{height:11px;width:62%;border-radius:3px;background:var(--ink);opacity:.85}
+.m .t{height:6px;border-radius:3px;background:var(--line)}
+.m .bars{flex:1;display:flex;align-items:flex-end;gap:5px;padding-top:6px;min-height:60px}
+.m .bars i{flex:1;background:var(--accent);border-radius:2px 2px 0 0}
+.book{flex:1;display:flex;gap:4px;justify-content:center;align-items:stretch}
+.book .pg{width:38%;background:var(--surface);border:1px solid var(--line);border-radius:4px;padding:10px;display:flex;flex-direction:column;gap:6px}
+.book .cover{background:var(--accent);border-color:var(--accent);justify-content:flex-end}
+.book .cover i{height:8px;border-radius:3px;background:var(--accent-ink);opacity:.9}
+.book .cover i.s{width:55%;opacity:.6}
+.book .pg .t{height:5px;border-radius:3px;background:var(--line)}
+.book .pg .h{height:8px;width:70%;border-radius:3px;background:var(--ink);opacity:.8}
+.quizm{flex:1;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:14px;display:flex;flex-direction:column;gap:8px}
+.quizm .h{height:10px;width:75%;border-radius:3px;background:var(--ink);opacity:.85}
+.quizm .o{height:16px;border:1px solid var(--line);border-radius:5px}
+.quizm .o.ok{border-color:var(--accent);background:var(--accent-soft)}
+.story{flex:1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.story div{background:var(--surface);border:1px solid var(--line);border-radius:6px;display:flex;flex-direction:column;overflow:hidden}
+.story div b{flex:1;background:var(--soft);border-bottom:1px solid var(--line)}
+.story div i{height:5px;margin:6px;border-radius:3px;background:var(--line)}
+
+.notes-m{flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:6px}
+.notes-m i{border-radius:3px;background:#FFE37E;box-shadow:0 6px 12px -8px rgba(0,0,0,.35);transform:rotate(-2deg)}
+.notes-m i:nth-child(2){background:#FFD0C2;transform:rotate(1.5deg)}
+.notes-m i:nth-child(3){background:#C9EBD9;transform:rotate(1deg)}
+.notes-m i:nth-child(4){background:#FFE37E;transform:rotate(-1deg)}
+
+/* Laboratório */
+.lab{background:var(--deep);color:var(--deep-ink)}
+.lab .eyebrow{color:var(--signal)}
+.lab .sec-head p{color:var(--deep-muted)}
+.lab-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:48px;align-items:start}
+.lab-why{display:flex;flex-direction:column;gap:16px}
+.lab-why ul{margin:0;padding-left:1.1em;color:var(--deep-muted);display:flex;flex-direction:column;gap:6px;font-size:.95rem}
+.lab-why a{color:var(--deep-ink)}
+.activity{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(22,124,138,.08);padding:24px;display:flex;flex-direction:column;gap:12px}
+.activity .ctx{font-size:.95rem;color:var(--muted)}
+.activity h3{font-size:1.2rem}
+.data{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.data div{background:var(--soft);border-radius:8px;padding:10px}
+.data span{display:block;font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:700}
+.data b{font-family:var(--f-mono);font-size:1.1rem;font-weight:500}
+.choice{display:block;width:100%;text-align:left;padding:12px 14px;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;font-size:.96rem}
+.choice:hover{border-color:var(--accent)}
+.choice[aria-pressed="true"].right{border:2px solid var(--ok);background:var(--ok-soft)}
+.choice[aria-pressed="true"].wrong{border:2px solid var(--bad);background:var(--bad-soft)}
+.fb{font-size:.94rem;border-radius:8px;padding:12px 14px;background:var(--soft)}
+.fb b{display:block;margin-bottom:2px}
+.lab-foot{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+
+/* Processo */
+ol.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;counter-reset:s}
+ol.steps li{counter-increment:s;display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:3px solid var(--line);min-width:0}
+ol.steps li.key{border-top-color:var(--signal)}
+ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--f-mono);font-size:.8rem;color:var(--accent)}
+ol.steps b{font-family:var(--f-display);font-size:1.05rem}
+ol.steps p{font-size:.9rem;color:var(--muted)}
+.proc-note{margin-top:18px;font-size:.9rem;color:var(--muted)}
+.proc-note b{color:var(--signal)}
+
+/* Sobre */
+.about{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:start}
+.about p+p{margin-top:14px}
+.about .lead{font-size:1.08rem}
+.creds{display:flex;flex-direction:column;gap:12px}
+.cred{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}
+.cred b{font-family:var(--f-display)}
+.cred p{font-size:.93rem;color:var(--muted)}
+.note{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--signal);border-radius:10px;padding:16px 20px;font-size:.93rem;color:var(--muted)}
+.note b{color:var(--ink)}
+
+/* Contato */
+.contact{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:24px}
+.contact div{display:flex;flex-direction:column;gap:2px;min-width:0}
+.contact span{font-size:.78rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700}
+.contact b{font-family:var(--f-mono);font-size:.95rem;overflow-wrap:anywhere;font-weight:500}
+footer{padding-block:28px 44px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
+
+@media (max-width:900px){
+  .hero-grid,.lab-grid,.about{grid-template-columns:minmax(0,1fr);gap:32px}
+  .deliver ul{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .projects,.projects.single .proj{grid-template-columns:minmax(0,1fr)}
+  .projects.single .thumb{border-right:0;border-bottom:1px solid var(--line);aspect-ratio:16/9;min-height:0}
+  ol.steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .contact{grid-template-columns:minmax(0,1fr)}
+  .top nav{gap:14px}
+}
+@media (max-width:560px){
+  .deliver ul{grid-template-columns:repeat(2,minmax(0,1fr))}
+  ol.steps,.data{grid-template-columns:minmax(0,1fr)}
+  .top nav a.opt{display:none}
+  section{padding-block:48px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+
+
+<a class="skip" href="#projetos">Pular para os projetos</a>
+
+<header class="top">
+  <div class="wrap">
+    <a class="mark" href="#inicio">Maiara Machado <span>· Design Educacional</span></a>
+    <nav aria-label="Seções">
+      <a href="#projetos">Projetos</a>
+      <a href="#experimente" class="opt">Experimente</a>
+      <a href="#processo" class="opt">Processo</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#contato">Contato</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio" aria-labelledby="h-hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Learning Experience Design · Editoração digital educacional</p>
+        <h1 id="h-hero">Conteúdo técnico transformado em <em>cursos prontos para o AVA</em>.</h1>
+        <p class="lead">Recebo o material bruto do especialista e entrego o curso estruturado, diagramado e pronto para publicar: desenho instrucional, identidade visual da instituição, interatividade e acessibilidade.</p>
+        <div class="cta"><a class="btn pri" href="#projetos">Ver projetos</a><a class="btn" href="#experimente">Experimentar uma atividade</a></div>
+      </div>
+      <div class="facts" aria-label="Resumo profissional">
+        <div><b>+10 anos</b><span>no setor de educação</span></div>
+        <div><b>Formação em tecnologia</b><span>Sistemas de Informação: HTML, CSS e plataformas digitais</span></div>
+        <div><b>Gestão de projetos</b><span>prazos, escopo e relatórios de status sob controle</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="deliver" aria-label="O que entrego">
+    <div class="wrap">
+      <ul>
+        <li><b>Desenho instrucional</b><span>matriz, arquitetura, objetivos</span></li>
+        <li><b>Roteiros e storyboards</b><span>vídeo, objetos, trilhas</span></li>
+        <li><b>Diagramação</b><span>e-books, apostilas, capas, sumários</span></li>
+        <li><b>HTML/CSS e AVAs</b><span>Moodle e outras plataformas</span></li>
+        <li><b>Interatividade</b><span>H5P, simulações, avaliações</span></li>
+        <li><b>Acessibilidade</b><span>critérios WCAG desde o roteiro</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="projetos" aria-labelledby="h-proj">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Projetos</p>
+        <h2 id="h-proj">Soluções desenvolvidas</h2>
+        <p>Amostras de escopo reduzido, produzidas completas: cada uma pode ser aberta e navegada do início ao fim e inclui uma ficha de design instrucional com público, objetivos, decisões pedagógicas e ferramentas utilizadas.</p>
+      </div>
+      <div class="filters" id="filters" role="group" aria-label="Filtrar por formato" hidden></div>
+      <div class="projects" id="projList"></div>
+    </div>
+  </section>
+
+  <section class="lab" id="experimente" aria-labelledby="h-lab">
+    <div class="wrap lab-grid">
+      <div class="lab-why">
+        <div class="sec-head" style="margin-bottom:0">
+          <p class="eyebrow">Experimente</p>
+          <h2 id="h-lab">Uma decisão, um retorno, uma reflexão</h2>
+          <p>Esta atividade foi retirada do minicurso <i>Metas que Movem Resultados</i>. Responda e veja como o retorno explica o raciocínio, não só o acerto.</p>
+        </div>
+        <ul>
+          <li>Situação real de trabalho, com dados do caso.</li>
+          <li>Alternativas plausíveis, que testam um erro de raciocínio comum.</li>
+          <li>Retorno formativo para cada escolha.</li>
+        </ul>
+        <a href="metas/#m6" target="_blank" rel="noopener">Abrir o simulador completo no curso →</a>
+      </div>
+      <div class="activity" id="activity">
+        <p class="eyebrow" style="color:var(--accent)">Caso Lumen Logística · Módulo 6</p>
+        <h3>A meta do ano está em risco?</h3>
+        <p class="ctx">A meta anual é de 44.000 entregas. Em junho, a empresa acumulou 19.800. Historicamente, o segundo semestre concentra 54% do volume do ano.</p>
+        <div class="data" aria-label="Dados do caso">
+          <div><span>Meta anual</span><b>44.000</b></div>
+          <div><span>Realizado jan–jun</span><b>19.800</b></div>
+          <div><span>Peso do 2º semestre</span><b>54%</b></div>
+        </div>
+        <div id="choices" role="group" aria-label="Alternativas">
+          <button class="choice" type="button" data-a="0" aria-pressed="false">Sim. A empresa fez 45% da meta em metade do ano: no ritmo atual, vai fechar em 90%.</button>
+          <button class="choice" type="button" data-a="1" aria-pressed="false" style="margin-top:8px">Ainda não dá para concluir. É preciso projetar o ano considerando o peso maior do segundo semestre.</button>
+          <button class="choice" type="button" data-a="2" aria-pressed="false" style="margin-top:8px">Não. Basta esperar a Black Friday, que sempre resolve o resultado.</button>
+        </div>
+        <div class="fb" id="fb" role="status" aria-live="polite" hidden></div>
+        <div class="lab-foot"><button class="btn" type="button" id="labReset" hidden>Tentar de novo</button></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="processo" aria-labelledby="h-proc">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Processo</p>
+        <h2 id="h-proc">Como conduzo uma demanda</h2>
+        <p>A mesma sequência em todo projeto, com o roteiro aprovado antes de qualquer produção.</p>
+      </div>
+      <ol class="steps">
+        <li><b>Análise</b><p>Público, objetivos, conteúdo recebido e restrições da plataforma.</p></li>
+        <li><b>Desenho</b><p>Matriz instrucional, arquitetura do curso e roteiro ou storyboard.</p></li>
+        <li class="key"><b>Validação do roteiro</b><p>Aprovação pela equipe acadêmica antes da produção.</p></li>
+        <li><b>Produção</b><p>Diagramação, marcação HTML/CSS, interatividade e acessibilidade.</p></li>
+        <li><b>Revisão e entrega</b><p>Testes no AVA, ajustes e entrega pronta para publicação.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="sobre" aria-labelledby="h-sobre" style="border-top:1px solid var(--line)">
+    <div class="wrap">
+      <div class="about">
+        <div>
+          <p class="eyebrow">Sobre</p>
+          <h2 id="h-sobre" style="font-size:clamp(1.7rem,4vw,2.5rem);margin-block:10px 18px">Educação, tecnologia e método</h2>
+          <p class="lead">Sou Maiara Machado. Trabalho há mais de dez anos no setor de educação e tenho formação em tecnologia, em Sistemas de Informação.</p>
+          <p>Minha atuação em gestão me deu algo que faz diferença em projetos de conteúdo: disciplina de prazo, escopo bem definido e comunicação clara de status. Uso inteligência artificial e ferramentas no-code como apoio à produção, sempre com revisão pedagógica e técnica feita por mim.</p>
+        </div>
+        <div class="creds">
+          <div class="cred"><b>Setor de educação</b><p>Mais de dez anos de atuação, com concepção de treinamentos para gestores.</p></div>
+          <div class="cred"><b>Formação em tecnologia</b><p>Sistemas de Informação: base técnica para construir páginas, objetos e recursos digitais.</p></div>
+          <div class="cred"><b>Gestão e PMO</b><p>Planejamento, acompanhamento de entregas e relatórios de andamento.</p></div>
+        </div>
+      </div>
+      <p class="note"><b>Sobre os projetos apresentados.</b> Os projetos deste portfólio são autorais e demonstrativos. São amostras de escopo reduzido (um módulo ou um minicurso, não um programa inteiro), mas completas e navegáveis, desenvolvidas por mim para apresentar meu método de trabalho. Os casos, empresas e dados utilizados são fictícios, e nenhum material pertence a clientes ou empregadores.</p>
+    </div>
+  </section>
+
+  <section id="contato" aria-labelledby="h-cont" style="border-top:1px solid var(--line)">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Contato</p>
+        <h2 id="h-cont">Vamos conversar</h2>
+      </div>
+      <div class="contact">
+        <div><span>E-mail</span><b>seu-email@exemplo.com</b></div>
+        <div><span>Empresa</span><b>Razão social · CNPJ 00.000.000/0001-00</b></div>
+        <div><span>Atuação</span><b>Remota · todo o Brasil</b></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer><div class="wrap">© 2026 Maiara Machado · Design Educacional</div></footer>
+
+<script>
+/* ===== Edite aqui: dados dos projetos =====
+   publicado: true  -> aparece com o botão "Abrir projeto"
+   publicado: false -> fica oculto (ou aparece como "Em produção" se MOSTRAR_EM_PRODUCAO = true)
+   O filtro por formato aparece sozinho quando houver 4 ou mais projetos visíveis. */
+const MOSTRAR_EM_PRODUCAO = false;
+const PROJETOS = [
+  { titulo:"Design Thinking: da compreensão do problema à construção de soluções", formato:"Curso autoinstrucional · HTML + apostila PDF", tipo:"curso", thumb:"notas", escopo:"Amostra · módulo 1 de 6", publicado:true, link:"design-thinking/", ficha:"#ficha",
+    extras:[{rotulo:"Apostila (PDF)", href:"design-thinking/apostila-design-thinking-m1.pdf"}],
+    desc:"Módulo 1 de um curso de seis, entregue completo: caso integrador, quatro microunidades com checagem imediata, simulador de decisão com seis cenários e flashcards situacionais. Acompanha apostila diagramada de 19 páginas com exercícios e gabarito.",
+    publico:"Profissionais de gestão, processos, inovação e atendimento", carga:"Módulo 1 · cerca de 40 min + apostila de 19 páginas",
+    demonstra:["Objetivo de nível Avaliar (Bloom)","Caso integrador","Simulador de decisão","Flashcards","Apostila diagramada","Acessibilidade"] },
+  { titulo:"Metas que Movem Resultados", formato:"Curso autoinstrucional · HTML", tipo:"curso", thumb:"curso", escopo:"Minicurso completo", publicado:true, link:"metas/", ficha:"#sobre",
+    desc:"Minicurso para gestores sobre desdobramento de metas, mensalização, causa raiz, plano de ação e projeção de resultado, construído em torno de um caso fictício que atravessa todos os módulos.",
+    publico:"Gestores e líderes de equipe", carga:"1h30 · 6 módulos e avaliação final",
+    demonstra:["Design instrucional","Aprendizagem baseada em caso","7 interações","Avaliação formativa","HTML/CSS/JS","Acessibilidade"] },
+  { titulo:"Introdução a Redes de Computadores", formato:"E-book diagramado · PDF", tipo:"editoracao", thumb:"livro", publicado:false, link:"redes/",
+    desc:"Apostila introdutória com capa, sumário, divisores de módulo e boxes didáticos, a partir de conteúdo técnico bruto.",
+    publico:"Iniciantes em TI", carga:"3 capítulos",
+    demonstra:["Transposição didática","Diagramação","Identidade visual"] },
+  { titulo:"Phishing: você cairia?", formato:"Objeto interativo · HTML", tipo:"objeto", thumb:"quiz", publicado:false, link:"phishing/",
+    desc:"Cenários de decisão sobre e-mails suspeitos, com retorno explicativo a cada escolha.",
+    publico:"Usuários de TI em geral", carga:"15 min",
+    demonstra:["Interatividade","Avaliação","Segurança da informação","Acessibilidade"] },
+  { titulo:"Storyboard: videoaula sobre senhas seguras", formato:"Roteiro e storyboard · PDF", tipo:"roteiro", thumb:"story", publicado:false, link:"storyboard/",
+    desc:"Roteiro de videoaula com storyboard quadro a quadro, narração e indicações de animação.",
+    publico:"Usuários de TI em geral", carga:"Vídeo de 4 min",
+    demonstra:["Roteirização","Storyboard","Linguagem audiovisual"] }
+];
+const TIPOS={curso:"Cursos",editoracao:"Editoração",objeto:"Objetos interativos",roteiro:"Roteiros"};
+/* ========================================== */
+
+const THUMBS={
+  curso:`<div class="m"><div class="side"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div><div class="main"><div class="h"></div><div class="t"></div><div class="t" style="width:85%"></div><div class="bars"><i style="height:40%"></i><i style="height:38%"></i><i style="height:46%"></i><i style="height:45%"></i><i style="height:52%"></i><i style="height:46%"></i><i style="height:44%"></i><i style="height:48%"></i><i style="height:46%"></i><i style="height:50%"></i><i style="height:72%"></i><i style="height:70%"></i></div></div></div>`,
+  livro:`<div class="book"><div class="pg cover"><i></i><i class="s"></i></div><div class="pg"><div class="h"></div><div class="t"></div><div class="t"></div><div class="t" style="width:80%"></div><div class="t"></div><div class="t" style="width:60%"></div></div></div>`,
+  quiz:`<div class="quizm"><div class="h"></div><div class="o"></div><div class="o ok"></div><div class="o"></div><div class="o"></div></div>`,
+  notas:`<div class="notes-m"><i></i><i></i><i></i><i></i></div>`,
+  story:`<div class="story"><div><b></b><i></i></div><div><b></b><i></i></div><div><b></b><i></i></div></div>`
+};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const visiveis=PROJETOS.filter(p=>p.publicado||MOSTRAR_EM_PRODUCAO);
+const list=document.getElementById("projList");
+list.classList.toggle("single",visiveis.length===1);
+list.innerHTML=visiveis.map((p,i)=>`
+  <article class="proj" data-tipo="${esc(p.tipo)}" aria-labelledby="pt${i}">
+    <div class="thumb" aria-hidden="true">${THUMBS[p.thumb]||""}</div>
+    <div class="proj-body">
+      <div class="proj-top"><span class="fmt">${esc(p.formato)}</span>${p.publicado?(p.escopo?`<span class="scope">${esc(p.escopo)}</span>`:""):`<span class="badge">Em produção</span>`}</div>
+      <h3 id="pt${i}">${esc(p.titulo)}</h3>
+      <p class="desc">${esc(p.desc)}</p>
+      <dl class="spec"><dt>Público</dt><dd>${esc(p.publico)}</dd><dt>Escopo</dt><dd>${esc(p.carga)}</dd></dl>
+      <div class="chips" aria-label="Competências demonstradas">${p.demonstra.map(d=>`<span class="chip">${esc(d)}</span>`).join("")}</div>
+      <div class="actions">${p.publicado?`<a class="btn pri" href="${esc(p.link)}" target="_blank" rel="noopener">Abrir projeto</a>${p.ficha?`<a class="btn" href="${esc(p.link+p.ficha)}" target="_blank" rel="noopener">Ver ficha de DI</a>`:""}${(p.extras||[]).map(x=>`<a class="btn" href="${esc(x.href)}" target="_blank" rel="noopener">${esc(x.rotulo)}</a>`).join("")}`:""}</div>
+    </div>
+  </article>`).join("");
+
+/* Filtro: só aparece com 4+ projetos */
+if(visiveis.length>=4){
+  const tipos=[...new Set(visiveis.map(p=>p.tipo))];
+  const f=document.getElementById("filters"); f.hidden=false;
+  f.innerHTML=`<button type="button" aria-pressed="true" data-t="all">Todos</button>`+tipos.map(t=>`<button type="button" aria-pressed="false" data-t="${t}">${TIPOS[t]||t}</button>`).join("");
+  f.addEventListener("click",e=>{
+    const b=e.target.closest("button"); if(!b) return;
+    f.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
+    list.querySelectorAll(".proj").forEach(p=>p.hidden=b.dataset.t!=="all"&&p.dataset.tipo!==b.dataset.t);
+  });
+}
+
+/* Laboratório */
+const FB=[
+  {ok:false,t:"Esse é o erro mais comum.",d:"A projeção linear trata todos os meses como iguais. Como o segundo semestre pesa mais, ela subestima o resultado e pode levar a medidas desnecessárias."},
+  {ok:true,t:"Exatamente.",d:"Ajustada à sazonalidade, a projeção é 19.800 ÷ 46% ≈ 43.000 entregas, cerca de 98% da meta. O farol é amarelo, não vermelho: pede reforço nas ações, não alarme."},
+  {ok:false,t:"Esperar é arriscado.",d:"Mesmo com o segundo semestre mais forte, a projeção ajustada fica abaixo de 100%. Sem ação agora, a meta provavelmente não será atingida, e em novembro já não há tempo para corrigir."}
+];
+const choices=document.querySelectorAll(".choice"), fb=document.getElementById("fb"), rs=document.getElementById("labReset");
+choices.forEach(b=>b.addEventListener("click",()=>{
+  const a=FB[+b.dataset.a];
+  choices.forEach(x=>{x.setAttribute("aria-pressed",String(x===b));x.classList.remove("right","wrong");});
+  b.classList.add(a.ok?"right":"wrong");
+  fb.hidden=false; fb.innerHTML=`<b>${a.t}</b>${a.d}`; rs.hidden=false;
+}));
+rs.addEventListener("click",()=>{choices.forEach(x=>{x.setAttribute("aria-pressed","false");x.classList.remove("right","wrong");});fb.hidden=true;rs.hidden=true;choices[0].focus();});
+</script>
+
+</body>
+</html>
