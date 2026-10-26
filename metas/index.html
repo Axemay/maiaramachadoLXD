@@ -2,799 +2,312 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Metas que Movem Resultados</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=JetBrains+Mono:wght@500&display=swap">
-<style>
-/* Layout: trilha de curso estilo AVA — navegação de módulos à esquerda, conteúdo em coluna de leitura à direita; um módulo por vez */
-:root{
-  --bg:#FAFBFC; --surface:#FFFFFF; --ink:#1E2A35; --muted:#56616E; --line:#E1E6EB; --soft:#EEF2F5;
-  --accent:#167C8A; --accent-ink:#FFFFFF; --accent-soft:#E3F1F3; --signal:#B57A00;
-  --ok:#2C7A4B; --ok-soft:#E0F1E6; --warn:#9A6400; --warn-soft:#FBF0D9; --bad:#B3261E; --bad-soft:#FBE3E1;
-  --f-display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
-  --f-body:"Atkinson Hyperlegible", "Segoe UI", system-ui, sans-serif;
-  --f-mono:"JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
-  --r:10px;
-}
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#0E151C; --surface:#151F29; --ink:#E5EAEF; --muted:#9BA8B5; --line:#273544; --soft:#1C2834;
-  --accent:#55B4C4; --accent-ink:#06232A; --accent-soft:#163640; --signal:#E3AC34;
-  --ok:#62C08A; --ok-soft:#163626; --warn:#E3AC34; --warn-soft:#3A2D10; --bad:#F0726A; --bad-soft:#3E1C1A;
-  color-scheme:dark; } }
-:root[data-theme="dark"]{
-  --bg:#0E151C; --surface:#151F29; --ink:#E5EAEF; --muted:#9BA8B5; --line:#273544; --soft:#1C2834;
-  --accent:#55B4C4; --accent-ink:#06232A; --accent-soft:#163640; --signal:#E3AC34;
-  --ok:#62C08A; --ok-soft:#163626; --warn:#E3AC34; --warn-soft:#3A2D10; --bad:#F0726A; --bad-soft:#3E1C1A;
-  color-scheme:dark; }
-
-*{box-sizing:border-box}
-body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
-a{color:var(--accent)}
-:focus-visible{outline:3px solid var(--signal);outline-offset:2px;border-radius:4px}
-.skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--accent-ink);padding:8px 14px;z-index:20}
-.skip:focus{left:16px;top:16px}
-h1,h2,h3{font-family:var(--f-display);line-height:1.15;text-wrap:balance;margin:0}
-h1{font-size:clamp(1.6rem,3.6vw,2.3rem);letter-spacing:-.01em}
-h2{font-size:clamp(1.45rem,3vw,1.9rem);letter-spacing:-.01em}
-h3{font-size:1.15rem;margin-top:.4rem}
-p{margin:0}
-.mono{font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700}
-
-/* Topo */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--surface);border-bottom:1px solid var(--line);
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:10px}
-.top-in{max-width:1200px;margin:0 auto;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
-.brand{display:flex;flex-direction:column;min-width:0}
-.brand b{font-family:var(--f-display);font-size:1.05rem}
-.brand span{font-size:.8rem;color:var(--muted)}
-.prog{margin-left:auto;display:flex;align-items:center;gap:10px;font-size:.85rem;color:var(--muted)}
-.bar{width:140px;height:8px;background:var(--soft);border-radius:99px;overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:var(--accent);transition:width .4s}
-.menu-btn{display:none;font:inherit;font-size:.9rem;background:var(--soft);color:var(--ink);border:1px solid var(--line);border-radius:8px;padding:6px 12px;cursor:pointer}
-
-/* Estrutura */
-.shell{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:270px minmax(0,1fr);gap:40px;
-  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 64px}
-nav.trilha{position:sticky;top:calc(env(safe-area-inset-top,0px) + 76px);align-self:start}
-nav.trilha ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
-nav.trilha a{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;text-decoration:none;color:var(--ink);padding:9px 10px;border-radius:8px;font-size:.93rem;line-height:1.35}
-nav.trilha a:hover{background:var(--soft)}
-nav.trilha a[aria-current="page"]{background:var(--accent-soft);font-weight:700}
-nav.trilha .st{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);margin-top:1px;display:grid;place-items:center;font-size:11px;color:var(--accent-ink)}
-nav.trilha a.done .st{background:var(--accent);border-color:var(--accent)}
-nav.trilha a.done .st::after{content:"✓"}
-nav.trilha small{display:block;color:var(--muted);font-weight:400;font-size:.78rem}
-.trilha-h{font-size:.78rem;text-transform:uppercase;letter-spacing:.09em;color:var(--muted);font-weight:700;margin:0 10px 8px}
-.trilha-sep{height:1px;background:var(--line);margin:10px 10px}
-
-main{min-width:0}
-section.mod{max-width:72ch;display:flex;flex-direction:column;gap:20px}
-.mod-head{display:flex;flex-direction:column;gap:8px;padding-bottom:6px}
-.meta-line{display:flex;gap:16px;flex-wrap:wrap;font-size:.85rem;color:var(--muted)}
-.lead{font-size:1.1rem;color:var(--ink)}
-
-/* Blocos */
-.box{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;gap:12px}
-.box.obj{border-left:4px solid var(--accent)}
-.box.caso{background:var(--accent-soft);border-color:transparent}
-.box.atencao{background:var(--warn-soft);border-color:transparent}
-.tag{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
-.box.atencao .tag{color:var(--warn)}
-ul.clean{margin:0;padding-left:1.2em;display:flex;flex-direction:column;gap:6px}
-.formula{font-family:var(--f-display);font-size:1.15rem;display:flex;gap:8px;flex-wrap:wrap;align-items:center}
-.formula span{background:var(--soft);border-radius:8px;padding:6px 12px}
-.formula em{font-style:normal;color:var(--muted)}
-
-.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:16px;display:flex;flex-direction:column;gap:6px;min-width:0}
-.card b{font-family:var(--f-display)}
-.card p{font-size:.93rem;color:var(--muted)}
-
-/* Controles */
-button,.btn{font:inherit;cursor:pointer}
-.btn{display:inline-flex;align-items:center;gap:8px;border-radius:8px;padding:9px 16px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:700;font-size:.95rem;text-decoration:none}
-.btn:hover{background:var(--soft)}
-.btn.pri{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.btn.pri:hover{filter:brightness(1.08)}
-.btn[disabled]{opacity:.45;cursor:not-allowed}
-.pager{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:20px;margin-top:8px}
-label{font-weight:700;font-size:.9rem}
-input[type=text],input[type=number],input[type=date],select,textarea{font:inherit;font-size:.95rem;color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:8px 10px;width:100%;min-width:0}
-input[type=range]{width:100%;accent-color:var(--accent)}
-.field{display:flex;flex-direction:column;gap:4px;min-width:0}
-.hint{font-size:.82rem;color:var(--muted)}
-
-/* Classificador e quiz */
-.stmt{display:flex;flex-direction:column;gap:10px;padding:14px 0;border-top:1px solid var(--line)}
-.stmt:first-of-type{border-top:0;padding-top:0}
-.stmt q{font-family:var(--f-display);font-size:1.05rem;quotes:"“" "”"}
-.choices{display:flex;gap:8px;flex-wrap:wrap}
-.fb{font-size:.93rem;border-radius:8px;padding:10px 12px}
-.fb.ok{background:var(--ok-soft);color:var(--ink);border-left:4px solid var(--ok)}
-.fb.no{background:var(--bad-soft);color:var(--ink);border-left:4px solid var(--bad)}
-.q{display:flex;flex-direction:column;gap:10px;padding:18px 0;border-top:1px solid var(--line)}
-.q:first-child{border-top:0;padding-top:0}
-.q legend{font-weight:700;padding:0;margin-bottom:6px}
-.q fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
-.opt{display:flex;gap:10px;align-items:flex-start;padding:10px 12px;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-weight:400;font-size:.97rem}
-.opt:hover{background:var(--soft)}
-.opt input{margin-top:5px;accent-color:var(--accent)}
-.opt.right{border-color:var(--ok);background:var(--ok-soft)}
-.opt.wrong{border-color:var(--bad);background:var(--bad-soft)}
-.score{font-family:var(--f-display);font-size:1.4rem}
-
-/* Tabelas e gráficos */
-.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r);background:var(--surface)}
-table{border-collapse:collapse;width:100%;font-size:.9rem}
-th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line);vertical-align:top}
-th{font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);background:var(--soft)}
-tr:last-child td{border-bottom:0}
-td.num,th.num{text-align:right;font-family:var(--f-mono);font-variant-numeric:tabular-nums}
-.chart{width:100%;height:auto;display:block}
-.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:.82rem;color:var(--muted)}
-.legend i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
-
-/* Árvore de desdobramento */
-.tree{display:flex;flex-direction:column;align-items:center;gap:0}
-.node{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:12px 14px;max-width:100%;min-width:0}
-.node.root{border:2px solid var(--accent);text-align:center;max-width:420px}
-.node small{display:block;color:var(--muted);font-size:.78rem}
-.node b{font-family:var(--f-display)}
-.stem{width:2px;height:18px;background:var(--line)}
-.branches{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:100%;border-top:2px solid var(--line);padding-top:18px;position:relative}
-.branches .node{font-size:.88rem}
-
-/* Simuladores */
-.sim-row{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,2fr) 70px;gap:12px;align-items:center;padding:8px 0;border-top:1px solid var(--line)}
-.sim-row:first-child{border-top:0}
-.sim-row output{font-family:var(--f-mono);text-align:right}
-.result{display:flex;gap:14px;align-items:center;flex-wrap:wrap;padding:14px;border-radius:8px;background:var(--soft)}
-.big{font-family:var(--f-mono);font-size:1.6rem;font-variant-numeric:tabular-nums}
-.pill{display:inline-flex;align-items:center;gap:6px;font-weight:700;font-size:.85rem;border-radius:99px;padding:4px 12px}
-.pill.ok{background:var(--ok-soft);color:var(--ok)}
-.pill.warn{background:var(--warn-soft);color:var(--warn)}
-.pill.bad{background:var(--bad-soft);color:var(--bad)}
-.pill::before{content:"";width:9px;height:9px;border-radius:50%;background:currentColor}
-.toggle{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.toggle button{border:0;background:var(--surface);color:var(--ink);padding:8px 14px;font-size:.9rem;font-weight:700}
-.toggle button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink)}
-.inline-fields{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
-
-/* Ishikawa e porquês */
-.sixm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
-.sixm button{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:8px;padding:10px;font-weight:700;text-align:left}
-.sixm button[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
-.why{display:flex;flex-direction:column;gap:8px;counter-reset:w}
-.why li{list-style:none;display:grid;grid-template-columns:96px 1fr;gap:12px;padding:10px 12px;border-radius:8px;background:var(--surface);border:1px solid var(--line)}
-.why li b{font-family:var(--f-display);color:var(--accent)}
-.why li.root{border:2px solid var(--signal)}
-.why li.root b{color:var(--signal)}
-.why{margin:0;padding:0}
-
-footer.autoria{border-top:1px solid var(--line);margin-top:28px;padding-top:16px;font-size:.85rem;color:var(--muted)}
-
-@media (max-width:900px){
-  .shell{grid-template-columns:minmax(0,1fr);gap:20px}
-  nav.trilha{position:static;display:none;background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:10px}
-  nav.trilha.open{display:block}
-  .menu-btn{display:inline-block}
-  .bar{width:90px}
-  .branches{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media (max-width:560px){
-  .grid2,.grid3,.inline-fields,.sixm{grid-template-columns:minmax(0,1fr)}
-  .sim-row{grid-template-columns:minmax(0,1fr) 64px}
-  .sim-row input{grid-column:1 / -1;grid-row:2}
-  .why li{grid-template-columns:1fr}
-  .branches{grid-template-columns:minmax(0,1fr)}
-  .prog span.txt{display:none}
-}
-@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="css/curso.css">
 </head>
 <body>
-
-
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 
-<header class="top">
-  <div class="top-in">
-    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="trilha">Módulos</button>
-    <div class="brand"><b>Metas que Movem Resultados</b><span>Curso autoinstrucional · 1h30</span></div>
-    <div class="prog" aria-live="polite"><span class="txt" id="progTxt">0 de 8 etapas</span><div class="bar" role="progressbar" aria-label="Progresso no curso" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progBar"><i></i></div></div>
-  </div>
-</header>
-
-<div class="shell">
-  <nav class="trilha" id="trilha" aria-label="Módulos do curso">
-    <p class="trilha-h">Trilha</p>
-    <ol id="navList"></ol>
-    <div class="trilha-sep"></div>
-    <ol><li><a href="#sobre" data-view="sobre"><span class="st" aria-hidden="true"></span><span>Sobre este projeto<small>Ficha de design instrucional</small></span></a></li></ol>
-  </nav>
+<div class="app">
+  <aside class="side" aria-label="Navegação do curso">
+    <div class="side-head">
+      <div class="brand"><b>Metas que Movem Resultados</b><span>Maiara Machado · Design Educacional</span></div>
+      <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="trilha">Módulos</button>
+    </div>
+    <div class="prog" aria-live="polite">
+      <div class="bar" role="progressbar" aria-label="Progresso no curso" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="progBar"><i></i></div>
+      <span class="txt" id="progTxt">0 de 8 etapas</span>
+    </div>
+    <nav class="trilha" id="trilha" aria-label="Módulos do curso">
+      <p class="trilha-h">Trilha</p>
+      <ol id="navList"></ol>
+      <div class="trilha-sep"></div>
+      <ol><li><a href="#sobre" data-view="sobre"><span class="st" aria-hidden="true"></span><span>Sobre este projeto<small>Ficha de design instrucional</small></span></a></li></ol>
+    </nav>
+  </aside>
 
   <main id="conteudo" tabindex="-1">
-
 <!-- ============ INÍCIO ============ -->
-<section class="mod" data-view="inicio" aria-labelledby="h-inicio">
-  <div class="mod-head">
-    <p class="eyebrow">Boas-vindas</p>
-    <h1 id="h-inicio">Metas que Movem Resultados</h1>
-    <p class="lead">Um curso curto e prático para quem precisa transformar uma meta da empresa em metas da própria área, acompanhar o resultado ao longo do ano e agir quando o número sai do trilho.</p>
-    <div class="meta-line"><span>Público: gestores e líderes de equipe</span><span>Carga horária: 1h30</span><span>Formato: autoinstrucional, com simulações</span></div>
-  </div>
-
-  <div class="box obj">
-    <span class="tag">Ao final deste curso, você será capaz de</span>
-    <ul class="clean">
-      <li><b>Redigir</b> metas completas, com objetivo, valor e prazo.</li>
-      <li><b>Desdobrar</b> uma meta global em metas específicas, usando estratificação e Pareto.</li>
-      <li><b>Definir</b> faixas de desempenho e <b>mensalizar</b> uma meta anual considerando sazonalidade.</li>
-      <li><b>Investigar</b> a causa raiz de um desvio com Ishikawa e 5 porquês.</li>
-      <li><b>Elaborar</b> um plano de ação no formato 5W2H.</li>
-      <li><b>Projetar</b> o resultado do ano e decidir quando é preciso agir.</li>
-    </ul>
-  </div>
-
-  <div class="box caso">
-    <span class="tag">O caso que acompanha o curso</span>
-    <p><b>Lumen Logística</b> é uma transportadora regional fictícia, com 40 mil entregas por ano. Em 2026, <b class="mono">88%</b> das entregas chegaram no prazo. A diretoria definiu a meta para 2027: chegar a <b class="mono">94%</b> até dezembro.</p>
-    <p>Em cada módulo, você vai ajudar a equipe da Lumen a dar o próximo passo, da redação da meta ao acompanhamento mensal.</p>
-  </div>
-
-  <h2>Como estudar</h2>
-  <div class="grid3">
-    <div class="card"><b>Leia o conceito</b><p>Cada módulo começa com uma explicação curta, de 3 a 5 minutos de leitura.</p></div>
-    <div class="card"><b>Pratique no caso</b><p>Simulações e exercícios usam os dados da Lumen. Mexa nos valores à vontade.</p></div>
-    <div class="card"><b>Confira o retorno</b><p>Todo exercício mostra na hora por que a resposta está certa ou errada.</p></div>
-  </div>
-  <p class="hint">O curso segue uma ordem lógica, mas você pode navegar livremente pelos módulos no menu.</p>
-
-  <div class="pager"><span></span><a class="btn pri" href="#m1">Começar o Módulo 1 →</a></div>
+<section aria-labelledby="h-inicio" class="mod" data-view="inicio">
+<div class="mod-head">
+<p class="eyebrow">Boas-vindas</p>
+<h1 id="h-inicio">Metas que Movem Resultados</h1>
+<p class="lead">Um curso curto e prático para quem precisa transformar uma meta da empresa em metas da própria área, acompanhar o resultado ao longo do ano e agir quando o número sai do trilho.</p>
+<div class="meta-line"><span>Público: gestores e líderes de equipe</span><span>Carga horária: 1h30</span><span>Formato: autoinstrucional, com simulações</span></div>
+</div>
+<div class="bleed bleed--soft"><div class="box obj">
+<span class="tag">Ao final deste curso, você será capaz de</span>
+<ul class="clean">
+<li><b>Redigir</b> metas completas, com objetivo, valor e prazo.</li>
+<li><b>Desdobrar</b> uma meta global em metas específicas, usando estratificação e Pareto.</li>
+<li><b>Definir</b> faixas de desempenho e <b>mensalizar</b> uma meta anual considerando sazonalidade.</li>
+<li><b>Investigar</b> a causa raiz de um desvio com Ishikawa e 5 porquês.</li>
+<li><b>Elaborar</b> um plano de ação no formato 5W2H.</li>
+<li><b>Projetar</b> o resultado do ano e decidir quando é preciso agir.</li>
+</ul>
+</div></div>
+<div class="bleed bleed--case"><div class="box caso">
+<span class="tag">O caso que acompanha o curso</span>
+<p><b>Lumen Logística</b> é uma transportadora regional fictícia, com 40 mil entregas por ano. Em 2026, <b class="mono">88%</b> das entregas chegaram no prazo. A diretoria definiu a meta para 2027: chegar a <b class="mono">94%</b> até dezembro.</p>
+<p>Em cada módulo, você vai ajudar a equipe da Lumen a dar o próximo passo, da redação da meta ao acompanhamento mensal.</p>
+</div></div>
+<h2>Como estudar</h2>
+<div class="grid3">
+<div class="card"><b>Leia o conceito</b><p>Cada módulo começa com uma explicação curta, de 3 a 5 minutos de leitura.</p></div>
+<div class="card"><b>Pratique no caso</b><p>Simulações e exercícios usam os dados da Lumen. Mexa nos valores à vontade.</p></div>
+<div class="card"><b>Confira o retorno</b><p>Todo exercício mostra na hora por que a resposta está certa ou errada.</p></div>
+</div>
+<p class="hint">O curso segue uma ordem lógica, mas você pode navegar livremente pelos módulos no menu.</p>
+<div class="pager"><span></span><a class="btn pri" href="#m1">Começar o Módulo 1 →</a></div>
 </section>
-
 <!-- ============ M1 ============ -->
-<section class="mod" data-view="m1" aria-labelledby="h-m1" hidden>
-  <div class="mod-head">
-    <p class="eyebrow">Módulo 1 · 10 min</p>
-    <h2 id="h-m1">Anatomia de uma meta</h2>
-    <p class="lead">Uma meta só orienta a ação quando qualquer pessoa consegue dizer, sem margem para dúvida, se ela foi ou não atingida.</p>
-  </div>
+<section aria-labelledby="h-m1" class="mod" data-view="m1" hidden="">
+<div class="mod-head">
+<p class="eyebrow">Módulo 1 · 10 min</p>
+<h2 id="h-m1">Anatomia de uma meta</h2>
+<p class="lead">Uma meta só orienta a ação quando qualquer pessoa consegue dizer, sem margem para dúvida, se ela foi ou não atingida.</p>
+</div>
+<p>No método de Gerenciamento pelas Diretrizes, uma meta tem sempre três partes. Se faltar alguma, o que existe é uma intenção, e intenções não podem ser acompanhadas.</p>
+<div aria-label="Meta é igual a objetivo gerencial mais valor mais prazo" class="formula"><span>Objetivo gerencial</span><em>+</em><span>Valor</span><em>+</em><span>Prazo</span></div>
+<div class="grid3">
+<div class="card"><b>Objetivo gerencial</b><p>O verbo e o indicador: <i>aumentar a taxa de entregas no prazo</i>.</p></div>
+<div class="card"><b>Valor</b><p>De onde se parte e aonde se quer chegar: <i>de 88% para 94%</i>.</p></div>
+<div class="card"><b>Prazo</b><p>Até quando: <i>até dezembro de 2027</i>.</p></div>
+</div>
+<div class="box">
+<span class="tag">Três termos que costumam se confundir</span>
+<ul class="clean">
+<li><b>Indicador</b> é o que se mede: taxa de entregas no prazo.</li>
+<li><b>Meta</b> é o valor que se quer atingir nesse indicador, num prazo.</li>
+<li><b>Item de controle</b> é o indicador sob responsabilidade de uma pessoa específica, acompanhado com frequência definida.</li>
+</ul>
+</div>
+<div class="bleed bleed--activity"><h3>Pratique: estas metas estão completas?</h3><div class="box" id="classif"></div></div>
 
-  <p>No método de Gerenciamento pelas Diretrizes, uma meta tem sempre três partes. Se faltar alguma, o que existe é uma intenção, e intenções não podem ser acompanhadas.</p>
-  <div class="formula" aria-label="Meta é igual a objetivo gerencial mais valor mais prazo"><span>Objetivo gerencial</span><em>+</em><span>Valor</span><em>+</em><span>Prazo</span></div>
-
-  <div class="grid3">
-    <div class="card"><b>Objetivo gerencial</b><p>O verbo e o indicador: <i>aumentar a taxa de entregas no prazo</i>.</p></div>
-    <div class="card"><b>Valor</b><p>De onde se parte e aonde se quer chegar: <i>de 88% para 94%</i>.</p></div>
-    <div class="card"><b>Prazo</b><p>Até quando: <i>até dezembro de 2027</i>.</p></div>
-  </div>
-
-  <div class="box">
-    <span class="tag">Três termos que costumam se confundir</span>
-    <ul class="clean">
-      <li><b>Indicador</b> é o que se mede: taxa de entregas no prazo.</li>
-      <li><b>Meta</b> é o valor que se quer atingir nesse indicador, num prazo.</li>
-      <li><b>Item de controle</b> é o indicador sob responsabilidade de uma pessoa específica, acompanhado com frequência definida.</li>
-    </ul>
-  </div>
-
-  <h3>Pratique: estas metas estão completas?</h3>
-  <div class="box" id="classif"></div>
-
-  <div class="pager"><a class="btn" href="#inicio">← Início</a><a class="btn pri" href="#m2">Módulo 2 →</a></div>
+<div class="pager"><a class="btn" href="#inicio">← Início</a><a class="btn pri" href="#m2">Módulo 2 →</a></div>
 </section>
-
 <!-- ============ M2 ============ -->
-<section class="mod" data-view="m2" aria-labelledby="h-m2" hidden>
-  <div class="mod-head">
-    <p class="eyebrow">Módulo 2 · 20 min</p>
-    <h2 id="h-m2">Desdobramento: da meta global às metas das áreas</h2>
-    <p class="lead">Desdobrar não é dividir a meta igualmente entre as áreas. É descobrir onde está o problema e colocar a meta onde está a alavanca.</p>
-  </div>
+<section aria-labelledby="h-m2" class="mod" data-view="m2" hidden="">
+<div class="mod-head">
+<p class="eyebrow">Módulo 2 · 20 min</p>
+<h2 id="h-m2">Desdobramento: da meta global às metas das áreas</h2>
+<p class="lead">Desdobrar não é dividir a meta igualmente entre as áreas. É descobrir onde está o problema e colocar a meta onde está a alavanca.</p>
+</div>
+<p>O primeiro passo é <b>estratificar</b>: separar o problema por tipo, local, turno, causa. Em quase todo problema, poucos fatores explicam a maior parte do resultado. Esse é o princípio de Pareto, e ele mostra onde concentrar esforço.</p>
+<div class="bleed bleed--case"><div class="box caso">
+<span class="tag">Lumen Logística · atrasos de 2026</span>
+<p>Em 2026, a Lumen teve <b class="mono">4.800</b> entregas atrasadas, ou seja, 12% das 40 mil. A equipe estratificou os atrasos por causa principal:</p>
+</div><figure class="box" style="margin:0">
+<svg aria-labelledby="paretoT paretoD" class="chart" id="pareto" role="img" viewbox="0 0 640 320"><title id="paretoT">Gráfico de Pareto dos atrasos da Lumen em 2026</title><desc id="paretoD">Roteirização 1.680, endereço incorreto 1.250, falta de veículo 820, separação no centro de distribuição 560, clima e trânsito 300, outros 190. As duas primeiras causas somam 61% dos atrasos.</desc></svg>
+<div class="legend"><span><i style="background:var(--accent)"></i>Atrasos por causa</span><span><i style="background:var(--signal)"></i>% acumulado</span></div>
+<figcaption class="hint">Roteirização e endereço incorreto, juntos, explicam 61% dos atrasos. As três primeiras causas explicam 78%.</figcaption>
+</figure></div>
 
-  <p>O primeiro passo é <b>estratificar</b>: separar o problema por tipo, local, turno, causa. Em quase todo problema, poucos fatores explicam a maior parte do resultado. Esse é o princípio de Pareto, e ele mostra onde concentrar esforço.</p>
+<p>Com a estratificação em mãos, a meta global vira <b>metas específicas</b>, cada uma com um dono. Repare que a causa "clima e trânsito" ficou de fora: ela não está sob controle da empresa.</p>
+<div aria-label="Árvore de desdobramento da meta da Lumen" class="tree">
+<div class="node root"><small>Meta global · Diretoria de Operações</small><b>Entregas no prazo: de 88% para 94% até dez/2027</b></div>
+<div aria-hidden="true" class="stem"></div>
+<div class="branches">
+<div class="node"><small>Planejamento de Rotas</small><b>Roteirização</b><br/><span class="mono" id="t-rot">−65%</span> nos atrasos</div>
+<div class="node"><small>Atendimento</small><b>Endereço incorreto</b><br/><span class="mono" id="t-end">−60%</span> nos atrasos</div>
+<div class="node"><small>Frota</small><b>Falta de veículo</b><br/><span class="mono" id="t-fro">−50%</span> nos atrasos</div>
+<div class="node"><small>Centro de Distribuição</small><b>Separação</b><br/><span class="mono" id="t-cd">−30%</span> nos atrasos</div>
+</div>
+</div>
+<div class="bleed bleed--activity"><h3>Simule: as metas das áreas garantem a meta global?</h3><p>Este é o teste que todo desdobramento precisa passar. Para chegar a 94%, a Lumen pode ter no máximo <b class="mono">2.400</b> atrasos, ou seja, precisa eliminar <b class="mono">2.400</b>. Ajuste a redução de cada causa e veja se a conta fecha.</p><div class="box">
+<div id="simRows"></div>
+<div aria-live="polite" class="result">
+<div><span class="hint">Taxa projetada de entregas no prazo</span><br/><span class="big" id="simRate">94,1%</span></div>
+<span class="pill ok" id="simPill">Desdobramento suficiente</span>
+<span class="hint" id="simGap"></span>
+</div>
+</div></div>
 
-  <div class="box caso">
-    <span class="tag">Lumen Logística · atrasos de 2026</span>
-    <p>Em 2026, a Lumen teve <b class="mono">4.800</b> entregas atrasadas, ou seja, 12% das 40 mil. A equipe estratificou os atrasos por causa principal:</p>
-  </div>
-  <figure style="margin:0" class="box">
-    <svg id="pareto" class="chart" viewBox="0 0 640 320" role="img" aria-labelledby="paretoT paretoD"><title id="paretoT">Gráfico de Pareto dos atrasos da Lumen em 2026</title><desc id="paretoD">Roteirização 1.680, endereço incorreto 1.250, falta de veículo 820, separação no centro de distribuição 560, clima e trânsito 300, outros 190. As duas primeiras causas somam 61% dos atrasos.</desc></svg>
-    <div class="legend"><span><i style="background:var(--accent)"></i>Atrasos por causa</span><span><i style="background:var(--signal)"></i>% acumulado</span></div>
-    <figcaption class="hint">Roteirização e endereço incorreto, juntos, explicam 61% dos atrasos. As três primeiras causas explicam 78%.</figcaption>
-  </figure>
 
-  <p>Com a estratificação em mãos, a meta global vira <b>metas específicas</b>, cada uma com um dono. Repare que a causa "clima e trânsito" ficou de fora: ela não está sob controle da empresa.</p>
-
-  <div class="tree" aria-label="Árvore de desdobramento da meta da Lumen">
-    <div class="node root"><small>Meta global · Diretoria de Operações</small><b>Entregas no prazo: de 88% para 94% até dez/2027</b></div>
-    <div class="stem" aria-hidden="true"></div>
-    <div class="branches">
-      <div class="node"><small>Planejamento de Rotas</small><b>Roteirização</b><br><span class="mono" id="t-rot">−65%</span> nos atrasos</div>
-      <div class="node"><small>Atendimento</small><b>Endereço incorreto</b><br><span class="mono" id="t-end">−60%</span> nos atrasos</div>
-      <div class="node"><small>Frota</small><b>Falta de veículo</b><br><span class="mono" id="t-fro">−50%</span> nos atrasos</div>
-      <div class="node"><small>Centro de Distribuição</small><b>Separação</b><br><span class="mono" id="t-cd">−30%</span> nos atrasos</div>
-    </div>
-  </div>
-
-  <h3>Simule: as metas das áreas garantem a meta global?</h3>
-  <p>Este é o teste que todo desdobramento precisa passar. Para chegar a 94%, a Lumen pode ter no máximo <b class="mono">2.400</b> atrasos, ou seja, precisa eliminar <b class="mono">2.400</b>. Ajuste a redução de cada causa e veja se a conta fecha.</p>
-  <div class="box">
-    <div id="simRows"></div>
-    <div class="result" aria-live="polite">
-      <div><span class="hint">Taxa projetada de entregas no prazo</span><br><span class="big" id="simRate">94,1%</span></div>
-      <span class="pill ok" id="simPill">Desdobramento suficiente</span>
-      <span class="hint" id="simGap"></span>
-    </div>
-  </div>
-  <div class="box atencao">
-    <span class="tag">Erro comum</span>
-    <p>Distribuir a mesma redução para todas as áreas ("cada uma reduz 50%") parece justo, mas ignora o Pareto. Áreas com pouca contribuição para o problema recebem metas sem efeito, e as áreas críticas ficam com metas fracas demais.</p>
-  </div>
-
-  <div class="pager"><a class="btn" href="#m1">← Módulo 1</a><a class="btn pri" href="#m3">Módulo 3 →</a></div>
+<div class="box atencao">
+<span class="tag">Erro comum</span>
+<p>Distribuir a mesma redução para todas as áreas ("cada uma reduz 50%") parece justo, mas ignora o Pareto. Áreas com pouca contribuição para o problema recebem metas sem efeito, e as áreas críticas ficam com metas fracas demais.</p>
+</div>
+<div class="pager"><a class="btn" href="#m1">← Módulo 1</a><a class="btn pri" href="#m3">Módulo 3 →</a></div>
 </section>
-
 <!-- ============ M3 ============ -->
-<section class="mod" data-view="m3" aria-labelledby="h-m3" hidden>
-  <div class="mod-head">
-    <p class="eyebrow">Módulo 3 · 15 min</p>
-    <h2 id="h-m3">Faixas de desempenho e mensalização</h2>
-    <p class="lead">Uma meta anual só pode ser acompanhada mês a mês se cada mês tiver o seu próprio valor esperado.</p>
-  </div>
+<section aria-labelledby="h-m3" class="mod" data-view="m3" hidden="">
+<div class="mod-head">
+<p class="eyebrow">Módulo 3 · 15 min</p>
+<h2 id="h-m3">Faixas de desempenho e mensalização</h2>
+<p class="lead">Uma meta anual só pode ser acompanhada mês a mês se cada mês tiver o seu próprio valor esperado.</p>
+</div>
+<h3>Faixas: gatilho, alvo e superação</h3>
+<p>Muitas empresas definem três referências para cada meta. Elas são usadas no acompanhamento e, quando há remuneração variável, no cálculo do prêmio.</p>
+<div class="grid3">
+<div class="card"><b>Gatilho</b><p>O desempenho mínimo aceitável. Abaixo dele, a meta é considerada não atingida.</p></div>
+<div class="card"><b>Alvo</b><p>A meta propriamente dita: o resultado que o planejamento exige.</p></div>
+<div class="card"><b>Superação</b><p>Um resultado excepcional, acima do planejado.</p></div>
+</div>
+<div class="bleed bleed--activity"><h3>Mensalização com sazonalidade</h3><p>A Lumen também tem uma meta de volume: <b class="mono">44.000</b> entregas em 2027. Dividir por 12 cria metas fáceis em fevereiro e impossíveis em novembro, mês de Black Friday. O correto é distribuir a meta pelo peso histórico de cada mês.</p><div class="box">
+<div class="inline-fields">
+<div class="field"><label for="mAnual">Meta anual (entregas)</label><input id="mAnual" min="1000" step="500" type="number" value="44000"/></div>
+<div class="field"><label for="mGat">Gatilho (% do alvo)</label><input id="mGat" max="100" min="50" step="1" type="number" value="90"/></div>
+<div class="field"><label for="mSup">Superação (% do alvo)</label><input id="mSup" max="150" min="100" step="1" type="number" value="110"/></div>
+</div>
+<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
+<span class="hint">Distribuição:</span>
+<div aria-label="Tipo de distribuição" class="toggle" role="group">
+<button aria-pressed="true" id="dSaz" type="button">Sazonal (histórico)</button>
+<button aria-pressed="false" id="dLin" type="button">Linear (÷ 12)</button>
+</div>
+</div>
+<svg aria-label="Gráfico de barras com a meta mensal de entregas" class="chart" id="mensChart" role="img" viewbox="0 0 640 240"></svg>
+<div class="tbl-wrap"><table id="mensTbl"><thead><tr><th>Mês</th><th class="num">Peso</th><th class="num">Gatilho</th><th class="num">Alvo</th><th class="num">Superação</th></tr></thead><tbody></tbody></table></div>
+</div></div>
 
-  <h3>Faixas: gatilho, alvo e superação</h3>
-  <p>Muitas empresas definem três referências para cada meta. Elas são usadas no acompanhamento e, quando há remuneração variável, no cálculo do prêmio.</p>
-  <div class="grid3">
-    <div class="card"><b>Gatilho</b><p>O desempenho mínimo aceitável. Abaixo dele, a meta é considerada não atingida.</p></div>
-    <div class="card"><b>Alvo</b><p>A meta propriamente dita: o resultado que o planejamento exige.</p></div>
-    <div class="card"><b>Superação</b><p>Um resultado excepcional, acima do planejado.</p></div>
-  </div>
 
-  <h3>Mensalização com sazonalidade</h3>
-  <p>A Lumen também tem uma meta de volume: <b class="mono">44.000</b> entregas em 2027. Dividir por 12 cria metas fáceis em fevereiro e impossíveis em novembro, mês de Black Friday. O correto é distribuir a meta pelo peso histórico de cada mês.</p>
-
-  <div class="box">
-    <div class="inline-fields">
-      <div class="field"><label for="mAnual">Meta anual (entregas)</label><input id="mAnual" type="number" min="1000" step="500" value="44000"></div>
-      <div class="field"><label for="mGat">Gatilho (% do alvo)</label><input id="mGat" type="number" min="50" max="100" step="1" value="90"></div>
-      <div class="field"><label for="mSup">Superação (% do alvo)</label><input id="mSup" type="number" min="100" max="150" step="1" value="110"></div>
-    </div>
-    <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap">
-      <span class="hint">Distribuição:</span>
-      <div class="toggle" role="group" aria-label="Tipo de distribuição">
-        <button type="button" id="dSaz" aria-pressed="true">Sazonal (histórico)</button>
-        <button type="button" id="dLin" aria-pressed="false">Linear (÷ 12)</button>
-      </div>
-    </div>
-    <svg id="mensChart" class="chart" viewBox="0 0 640 240" role="img" aria-label="Gráfico de barras com a meta mensal de entregas"></svg>
-    <div class="tbl-wrap"><table id="mensTbl"><thead><tr><th>Mês</th><th class="num">Peso</th><th class="num">Gatilho</th><th class="num">Alvo</th><th class="num">Superação</th></tr></thead><tbody></tbody></table></div>
-  </div>
-
-  <div class="box atencao">
-    <span class="tag">Atenção: metas em percentual não se somam</span>
-    <p>A sazonalidade vale para metas de volume (entregas, receita, atendimentos). Para uma meta em taxa, como os 94% de entregas no prazo, não faz sentido somar os meses. O que se define é uma <b>curva de evolução</b>: por exemplo, 89% no primeiro trimestre, 91% no segundo, 93% no terceiro e 94% no quarto, acompanhando o tempo que as ações levam para fazer efeito.</p>
-  </div>
-
-  <div class="pager"><a class="btn" href="#m2">← Módulo 2</a><a class="btn pri" href="#m4">Módulo 4 →</a></div>
+<div class="box atencao">
+<span class="tag">Atenção: metas em percentual não se somam</span>
+<p>A sazonalidade vale para metas de volume (entregas, receita, atendimentos). Para uma meta em taxa, como os 94% de entregas no prazo, não faz sentido somar os meses. O que se define é uma <b>curva de evolução</b>: por exemplo, 89% no primeiro trimestre, 91% no segundo, 93% no terceiro e 94% no quarto, acompanhando o tempo que as ações levam para fazer efeito.</p>
+</div>
+<div class="pager"><a class="btn" href="#m2">← Módulo 2</a><a class="btn pri" href="#m4">Módulo 4 →</a></div>
 </section>
-
 <!-- ============ M4 ============ -->
-<section class="mod" data-view="m4" aria-labelledby="h-m4" hidden>
-  <div class="mod-head">
-    <p class="eyebrow">Módulo 4 · 15 min</p>
-    <h2 id="h-m4">Análise de causa raiz</h2>
-    <p class="lead">Atacar o sintoma faz o número melhorar por um mês. Atacar a causa raiz faz o problema não voltar.</p>
-  </div>
+<section aria-labelledby="h-m4" class="mod" data-view="m4" hidden="">
+<div class="mod-head">
+<p class="eyebrow">Módulo 4 · 15 min</p>
+<h2 id="h-m4">Análise de causa raiz</h2>
+<p class="lead">Atacar o sintoma faz o número melhorar por um mês. Atacar a causa raiz faz o problema não voltar.</p>
+</div>
+<p>O Pareto do Módulo 2 mostrou <b>onde</b> está o problema: roteirização. Agora a pergunta é <b>por quê</b>. Duas ferramentas simples ajudam a responder: o diagrama de Ishikawa, que organiza as causas possíveis, e os 5 porquês, que aprofundam a causa mais provável.</p>
+<div class="bleed bleed--activity"><h3>Ishikawa: as causas possíveis, organizadas em 6M</h3><p class="hint">Problema analisado: atrasos por roteirização (1.680 em 2026). Selecione uma categoria.</p><div class="box">
+<div aria-label="Categorias do diagrama de Ishikawa" class="sixm" id="sixm" role="group"></div>
+<div aria-live="polite" id="sixmOut"></div>
+</div></div>
 
-  <p>O Pareto do Módulo 2 mostrou <b>onde</b> está o problema: roteirização. Agora a pergunta é <b>por quê</b>. Duas ferramentas simples ajudam a responder: o diagrama de Ishikawa, que organiza as causas possíveis, e os 5 porquês, que aprofundam a causa mais provável.</p>
 
-  <h3>Ishikawa: as causas possíveis, organizadas em 6M</h3>
-  <p class="hint">Problema analisado: atrasos por roteirização (1.680 em 2026). Selecione uma categoria.</p>
-  <div class="box">
-    <div class="sixm" id="sixm" role="group" aria-label="Categorias do diagrama de Ishikawa"></div>
-    <div id="sixmOut" aria-live="polite"></div>
-  </div>
+<div class="bleed bleed--activity"><h3>5 porquês: da causa provável à causa raiz</h3><p>A equipe escolheu investigar a causa "tempo de parada subestimado". Avance pergunta por pergunta.</p><div class="box">
+<ol aria-live="polite" class="why" id="whyList"></ol>
+<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn pri" id="whyNext" type="button">Perguntar "por quê?"</button><button class="btn" id="whyReset" type="button">Recomeçar</button></div>
+</div></div>
 
-  <h3>5 porquês: da causa provável à causa raiz</h3>
-  <p>A equipe escolheu investigar a causa "tempo de parada subestimado". Avance pergunta por pergunta.</p>
-  <div class="box">
-    <ol class="why" id="whyList" aria-live="polite"></ol>
-    <div style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn pri" type="button" id="whyNext">Perguntar "por quê?"</button><button class="btn" type="button" id="whyReset">Recomeçar</button></div>
-  </div>
-  <div class="box atencao">
-    <span class="tag">Como saber que chegou na causa raiz</span>
-    <p>Pare de perguntar quando encontrar uma causa sobre a qual a equipe consegue agir e que, se eliminada, impede o problema de voltar. Nem sempre são exatamente cinco perguntas.</p>
-  </div>
 
-  <div class="pager"><a class="btn" href="#m3">← Módulo 3</a><a class="btn pri" href="#m5">Módulo 5 →</a></div>
+<div class="box atencao">
+<span class="tag">Como saber que chegou na causa raiz</span>
+<p>Pare de perguntar quando encontrar uma causa sobre a qual a equipe consegue agir e que, se eliminada, impede o problema de voltar. Nem sempre são exatamente cinco perguntas.</p>
+</div>
+<div class="pager"><a class="btn" href="#m3">← Módulo 3</a><a class="btn pri" href="#m5">Módulo 5 →</a></div>
 </section>
-
 <!-- ============ M5 ============ -->
-<section class="mod" data-view="m5" aria-labelledby="h-m5" hidden>
-  <div class="mod-head">
-    <p class="eyebrow">Módulo 5 · 15 min</p>
-    <h2 id="h-m5">Plano de ação 5W2H</h2>
-    <p class="lead">Cada causa raiz vira uma ou mais ações. O 5W2H garante que nenhuma ação fique sem dono, sem prazo ou sem método.</p>
-  </div>
+<section aria-labelledby="h-m5" class="mod" data-view="m5" hidden="">
+<div class="mod-head">
+<p class="eyebrow">Módulo 5 · 15 min</p>
+<h2 id="h-m5">Plano de ação 5W2H</h2>
+<p class="lead">Cada causa raiz vira uma ou mais ações. O 5W2H garante que nenhuma ação fique sem dono, sem prazo ou sem método.</p>
+</div>
+<div class="tbl-wrap"><table>
+<thead><tr><th>Pergunta</th><th>Significado</th><th>Boa prática</th></tr></thead>
+<tbody>
+<tr><td><b>What</b> · O quê</td><td>A ação</td><td>Começar com verbo no infinitivo</td></tr>
+<tr><td><b>Why</b> · Por quê</td><td>A causa que a ação ataca</td><td>Ligar à causa raiz identificada</td></tr>
+<tr><td><b>Where</b> · Onde</td><td>Local ou área</td><td>Ser específico</td></tr>
+<tr><td><b>Who</b> · Quem</td><td>O responsável</td><td>Uma pessoa, nunca "a equipe"</td></tr>
+<tr><td><b>When</b> · Quando</td><td>O prazo</td><td>Uma data, não "o quanto antes"</td></tr>
+<tr><td><b>How</b> · Como</td><td>O método</td><td>Etapas que permitam acompanhar</td></tr>
+<tr><td><b>How much</b> · Quanto</td><td>O custo</td><td>Estimar, mesmo que seja zero</td></tr>
+</tbody>
+</table></div>
+<div class="bleed bleed--activity"><h3>Monte uma ação para a Lumen</h3><p>O plano já tem duas ações. Escreva a terceira. O formulário avisa quando algo foge das boas práticas.</p><form class="box" id="w2h" novalidate="">
+<div class="grid2">
+<div class="field"><label for="wWhat">O quê</label><input id="wWhat" placeholder="Ex.: Implantar validação de CEP no pedido" type="text"/></div>
+<div class="field"><label for="wWhy">Por quê</label><input id="wWhy" placeholder="Ex.: 26% dos atrasos vêm de endereço incorreto" type="text"/></div>
+<div class="field"><label for="wWhere">Onde</label><input id="wWhere" placeholder="Ex.: Portal de pedidos" type="text"/></div>
+<div class="field"><label for="wWho">Quem</label><input id="wWho" placeholder="Ex.: Paula Rezende (Atendimento)" type="text"/></div>
+<div class="field"><label for="wWhen">Quando</label><input id="wWhen" type="date"/></div>
+<div class="field"><label for="wMuch">Quanto</label><input id="wMuch" placeholder="Ex.: R$ 8.000" type="text"/></div>
+</div>
+<div class="field"><label for="wHow">Como</label><textarea id="wHow" placeholder="Ex.: Integrar API de CEP ao formulário e bloquear pedidos sem número" rows="2"></textarea></div>
+<div aria-live="polite" id="wFb"></div>
+<div><button class="btn pri" type="submit">Adicionar ao plano</button></div>
+</form><div class="tbl-wrap"><table id="planTbl">
+<thead><tr><th>O quê</th><th>Por quê</th><th>Onde</th><th>Quem</th><th>Quando</th><th>Como</th><th class="num">Quanto</th></tr></thead>
+<tbody></tbody>
+</table></div></div>
 
-  <div class="tbl-wrap"><table>
-    <thead><tr><th>Pergunta</th><th>Significado</th><th>Boa prática</th></tr></thead>
-    <tbody>
-      <tr><td><b>What</b> · O quê</td><td>A ação</td><td>Começar com verbo no infinitivo</td></tr>
-      <tr><td><b>Why</b> · Por quê</td><td>A causa que a ação ataca</td><td>Ligar à causa raiz identificada</td></tr>
-      <tr><td><b>Where</b> · Onde</td><td>Local ou área</td><td>Ser específico</td></tr>
-      <tr><td><b>Who</b> · Quem</td><td>O responsável</td><td>Uma pessoa, nunca "a equipe"</td></tr>
-      <tr><td><b>When</b> · Quando</td><td>O prazo</td><td>Uma data, não "o quanto antes"</td></tr>
-      <tr><td><b>How</b> · Como</td><td>O método</td><td>Etapas que permitam acompanhar</td></tr>
-      <tr><td><b>How much</b> · Quanto</td><td>O custo</td><td>Estimar, mesmo que seja zero</td></tr>
-    </tbody>
-  </table></div>
 
-  <h3>Monte uma ação para a Lumen</h3>
-  <p>O plano já tem duas ações. Escreva a terceira. O formulário avisa quando algo foge das boas práticas.</p>
-  <form class="box" id="w2h" novalidate>
-    <div class="grid2">
-      <div class="field"><label for="wWhat">O quê</label><input id="wWhat" type="text" placeholder="Ex.: Implantar validação de CEP no pedido"></div>
-      <div class="field"><label for="wWhy">Por quê</label><input id="wWhy" type="text" placeholder="Ex.: 26% dos atrasos vêm de endereço incorreto"></div>
-      <div class="field"><label for="wWhere">Onde</label><input id="wWhere" type="text" placeholder="Ex.: Portal de pedidos"></div>
-      <div class="field"><label for="wWho">Quem</label><input id="wWho" type="text" placeholder="Ex.: Paula Rezende (Atendimento)"></div>
-      <div class="field"><label for="wWhen">Quando</label><input id="wWhen" type="date"></div>
-      <div class="field"><label for="wMuch">Quanto</label><input id="wMuch" type="text" placeholder="Ex.: R$ 8.000"></div>
-    </div>
-    <div class="field"><label for="wHow">Como</label><textarea id="wHow" rows="2" placeholder="Ex.: Integrar API de CEP ao formulário e bloquear pedidos sem número"></textarea></div>
-    <div id="wFb" aria-live="polite"></div>
-    <div><button class="btn pri" type="submit">Adicionar ao plano</button></div>
-  </form>
-  <div class="tbl-wrap"><table id="planTbl">
-    <thead><tr><th>O quê</th><th>Por quê</th><th>Onde</th><th>Quem</th><th>Quando</th><th>Como</th><th class="num">Quanto</th></tr></thead>
-    <tbody></tbody>
-  </table></div>
 
-  <div class="pager"><a class="btn" href="#m4">← Módulo 4</a><a class="btn pri" href="#m6">Módulo 6 →</a></div>
+<div class="pager"><a class="btn" href="#m4">← Módulo 4</a><a class="btn pri" href="#m6">Módulo 6 →</a></div>
 </section>
-
 <!-- ============ M6 ============ -->
-<section class="mod" data-view="m6" aria-labelledby="h-m6" hidden>
-  <div class="mod-head">
-    <p class="eyebrow">Módulo 6 · 15 min</p>
-    <h2 id="h-m6">Acompanhamento e projeção do resultado</h2>
-    <p class="lead">Olhar só o realizado do mês diz onde você está. Projetar o ano diz se você vai chegar.</p>
-  </div>
+<section aria-labelledby="h-m6" class="mod" data-view="m6" hidden="">
+<div class="mod-head">
+<p class="eyebrow">Módulo 6 · 15 min</p>
+<h2 id="h-m6">Acompanhamento e projeção do resultado</h2>
+<p class="lead">Olhar só o realizado do mês diz onde você está. Projetar o ano diz se você vai chegar.</p>
+</div>
+<p>Todo mês, o gestor compara o realizado com o planejado e faz uma pergunta: <b>no ritmo atual, onde vamos terminar o ano?</b> A resposta define a cor do farol e se é preciso agir.</p>
+<div class="grid3">
+<div class="card"><span class="pill ok">Verde</span><p>Projeção igual ou acima do alvo. Manter o plano.</p></div>
+<div class="card"><span class="pill warn">Amarelo</span><p>Projeção entre o gatilho e o alvo. Reforçar ações.</p></div>
+<div class="card"><span class="pill bad">Vermelho</span><p>Projeção abaixo do gatilho. Analisar causas e criar contramedidas.</p></div>
+</div>
+<div class="bleed bleed--activity"><h3>Simule a projeção da Lumen</h3><p>Repare na diferença entre a projeção linear e a projeção ajustada à sazonalidade. Com a meta de 44.000 entregas, em junho a Lumen acumulou 19.800. Parece pouco, mas o segundo semestre tem Black Friday.</p><div class="box">
+<div class="inline-fields">
+<div class="field"><label for="pMeta">Meta anual</label><input id="pMeta" min="1000" step="500" type="number" value="44000"/></div>
+<div class="field"><label for="pMes">Mês de referência</label><select id="pMes"></select></div>
+<div class="field"><label for="pReal">Realizado acumulado</label><input id="pReal" min="0" step="100" type="number" value="19800"/></div>
+</div>
+<div aria-live="polite" class="grid2">
+<div class="result" style="flex-direction:column;align-items:flex-start"><span class="hint">Projeção linear (média mensal × 12)</span><span class="big" id="pLin">–</span><span class="pill" id="pLinPill">–</span></div>
+<div class="result" style="flex-direction:column;align-items:flex-start"><span class="hint">Projeção ajustada à sazonalidade</span><span class="big" id="pSaz">–</span><span class="pill" id="pSazPill">–</span></div>
+</div>
+<p id="pTxt"></p>
+</div></div>
 
-  <p>Todo mês, o gestor compara o realizado com o planejado e faz uma pergunta: <b>no ritmo atual, onde vamos terminar o ano?</b> A resposta define a cor do farol e se é preciso agir.</p>
-  <div class="grid3">
-    <div class="card"><span class="pill ok">Verde</span><p>Projeção igual ou acima do alvo. Manter o plano.</p></div>
-    <div class="card"><span class="pill warn">Amarelo</span><p>Projeção entre o gatilho e o alvo. Reforçar ações.</p></div>
-    <div class="card"><span class="pill bad">Vermelho</span><p>Projeção abaixo do gatilho. Analisar causas e criar contramedidas.</p></div>
-  </div>
 
-  <h3>Simule a projeção da Lumen</h3>
-  <p>Repare na diferença entre a projeção linear e a projeção ajustada à sazonalidade. Com a meta de 44.000 entregas, em junho a Lumen acumulou 19.800. Parece pouco, mas o segundo semestre tem Black Friday.</p>
-  <div class="box">
-    <div class="inline-fields">
-      <div class="field"><label for="pMeta">Meta anual</label><input id="pMeta" type="number" min="1000" step="500" value="44000"></div>
-      <div class="field"><label for="pMes">Mês de referência</label><select id="pMes"></select></div>
-      <div class="field"><label for="pReal">Realizado acumulado</label><input id="pReal" type="number" min="0" step="100" value="19800"></div>
-    </div>
-    <div class="grid2" aria-live="polite">
-      <div class="result" style="flex-direction:column;align-items:flex-start"><span class="hint">Projeção linear (média mensal × 12)</span><span class="big" id="pLin">–</span><span class="pill" id="pLinPill">–</span></div>
-      <div class="result" style="flex-direction:column;align-items:flex-start"><span class="hint">Projeção ajustada à sazonalidade</span><span class="big" id="pSaz">–</span><span class="pill" id="pSazPill">–</span></div>
-    </div>
-    <p id="pTxt"></p>
-  </div>
-  <div class="box atencao">
-    <span class="tag">Quando o farol fica vermelho</span>
-    <p>Não espere o fim do trimestre. Volte ao Módulo 4: estratifique o desvio, encontre a causa e registre contramedidas no plano de ação, com responsável e prazo. Projeção sem ação é só previsão.</p>
-  </div>
-
-  <div class="pager"><a class="btn" href="#m5">← Módulo 5</a><a class="btn pri" href="#avaliacao">Avaliação final →</a></div>
+<div class="box atencao">
+<span class="tag">Quando o farol fica vermelho</span>
+<p>Não espere o fim do trimestre. Volte ao Módulo 4: estratifique o desvio, encontre a causa e registre contramedidas no plano de ação, com responsável e prazo. Projeção sem ação é só previsão.</p>
+</div>
+<div class="pager"><a class="btn" href="#m5">← Módulo 5</a><a class="btn pri" href="#avaliacao">Avaliação final →</a></div>
 </section>
-
 <!-- ============ AVALIAÇÃO ============ -->
-<section class="mod" data-view="avaliacao" aria-labelledby="h-av" hidden>
-  <div class="mod-head">
-    <p class="eyebrow">Avaliação final · 10 min</p>
-    <h2 id="h-av">Teste o que você aprendeu</h2>
-    <p class="lead">Seis questões sobre situações reais de gestão de metas. Você vê o retorno de cada questão depois de enviar.</p>
-  </div>
-  <form class="box" id="quiz"></form>
-  <div class="pager"><a class="btn" href="#m6">← Módulo 6</a><a class="btn" href="#sobre">Sobre este projeto →</a></div>
+<section aria-labelledby="h-av" class="mod" data-view="avaliacao" hidden="">
+<div class="mod-head">
+<p class="eyebrow">Avaliação final · 10 min</p>
+<h2 id="h-av">Teste o que você aprendeu</h2>
+<p class="lead">Seis questões sobre situações reais de gestão de metas. Você vê o retorno de cada questão depois de enviar.</p>
+</div>
+<div class="bleed bleed--activity"><form class="box" id="quiz"></form></div>
+<div class="pager"><a class="btn" href="#m6">← Módulo 6</a><a class="btn" href="#sobre">Sobre este projeto →</a></div>
 </section>
-
 <!-- ============ SOBRE ============ -->
-<section class="mod" data-view="sobre" aria-labelledby="h-sobre" hidden>
-  <div class="mod-head">
-    <p class="eyebrow">Ficha de design instrucional</p>
-    <h2 id="h-sobre">Sobre este projeto</h2>
-    <p class="lead">Projeto autoral demonstrativo, desenvolvido para portfólio. O caso Lumen Logística e todos os seus dados são fictícios.</p>
-  </div>
-
-  <div class="tbl-wrap"><table>
-    <tbody>
-      <tr><th scope="row">Problema</th><td>Gestores recebem metas anuais, mas não sabem desdobrá-las, mensalizá-las nem agir quando o resultado desvia. O conhecimento costuma ficar em apresentações longas e sem prática.</td></tr>
-      <tr><th scope="row">Público</th><td>Gestores e líderes de equipe, com pouca familiaridade com métodos de gestão e pouco tempo disponível.</td></tr>
-      <tr><th scope="row">Objetivos</th><td>Seis objetivos de aprendizagem, redigidos com verbos observáveis (redigir, desdobrar, definir, investigar, elaborar, projetar), um por módulo.</td></tr>
-      <tr><th scope="row">Abordagem</th><td>Aprendizagem baseada em caso: um único caso fictício atravessa todos os módulos, para que cada conceito seja aplicado no resultado do anterior. Conceito curto, prática imediata e retorno formativo.</td></tr>
-      <tr><th scope="row">Estrutura</th><td>Abertura, 6 módulos de 10 a 20 minutos e avaliação final com 6 questões. Carga total estimada: 1h30.</td></tr>
-      <tr><th scope="row">Interatividade</th><td>Classificador de metas, simulador de desdobramento, calculadora de mensalização e faixas, diagrama de Ishikawa navegável, sequência de 5 porquês, montador de 5W2H com validação e simulador de projeção com farol.</td></tr>
-      <tr><th scope="row">Avaliação</th><td>Formativa em cada módulo, com retorno imediato, e somativa ao final, com explicação para cada alternativa.</td></tr>
-      <tr><th scope="row">Acessibilidade</th><td>Projetado seguindo critérios das WCAG 2.1: estrutura semântica com marcos e títulos, navegação completa por teclado com foco visível, link para pular ao conteúdo, textos alternativos para gráficos, cor nunca como única forma de informação, respeito à preferência por movimento reduzido, temas claro e escuro, e fonte Atkinson Hyperlegible, desenhada para leitores com baixa visão.</td></tr>
-      <tr><th scope="row">Compatibilidade</th><td>Arquivo HTML único e autocontido (HTML, CSS e JavaScript), responsivo, sem dependências de servidor. Pode ser publicado no Moodle como recurso Arquivo ou Página, ou empacotado como SCORM.</td></tr>
-      <tr><th scope="row">Ferramentas</th><td>Roteiro, desenho instrucional e revisão de conteúdo pela autora. IA generativa (Claude) como apoio na redação de rascunhos e na codificação HTML/CSS/JS, com revisão integral da autora. Base metodológica: Gerenciamento pelas Diretrizes, Pareto, Ishikawa, 5 porquês e 5W2H.</td></tr>
-    </tbody>
-  </table></div>
-
-  <footer class="autoria">Projeto autoral demonstrativo · Desenvolvido por Maiara Machado, 2026 · Caso e dados fictícios, criados para fins didáticos.</footer>
+<section aria-labelledby="h-sobre" class="mod" data-view="sobre" hidden="">
+<div class="mod-head">
+<p class="eyebrow">Ficha de design instrucional</p>
+<h2 id="h-sobre">Sobre este projeto</h2>
+<p class="lead">Projeto autoral demonstrativo, desenvolvido para portfólio. O caso Lumen Logística e todos os seus dados são fictícios.</p>
+</div>
+<div class="tbl-wrap"><table>
+<tbody>
+<tr><th scope="row">Problema</th><td>Gestores recebem metas anuais, mas não sabem desdobrá-las, mensalizá-las nem agir quando o resultado desvia. O conhecimento costuma ficar em apresentações longas e sem prática.</td></tr>
+<tr><th scope="row">Público</th><td>Gestores e líderes de equipe, com pouca familiaridade com métodos de gestão e pouco tempo disponível.</td></tr>
+<tr><th scope="row">Objetivos</th><td>Seis objetivos de aprendizagem, redigidos com verbos observáveis (redigir, desdobrar, definir, investigar, elaborar, projetar), um por módulo.</td></tr>
+<tr><th scope="row">Abordagem</th><td>Aprendizagem baseada em caso: um único caso fictício atravessa todos os módulos, para que cada conceito seja aplicado no resultado do anterior. Conceito curto, prática imediata e retorno formativo.</td></tr>
+<tr><th scope="row">Estrutura</th><td>Abertura, 6 módulos de 10 a 20 minutos e avaliação final com 6 questões. Carga total estimada: 1h30.</td></tr>
+<tr><th scope="row">Interatividade</th><td>Classificador de metas, simulador de desdobramento, calculadora de mensalização e faixas, diagrama de Ishikawa navegável, sequência de 5 porquês, montador de 5W2H com validação e simulador de projeção com farol.</td></tr>
+<tr><th scope="row">Avaliação</th><td>Formativa em cada módulo, com retorno imediato, e somativa ao final, com explicação para cada alternativa.</td></tr>
+<tr><th scope="row">Acessibilidade</th><td>Projetado seguindo critérios das WCAG 2.1: estrutura semântica com marcos e títulos, navegação completa por teclado com foco visível, link para pular ao conteúdo, textos alternativos para gráficos, cor nunca como única forma de informação, respeito à preferência por movimento reduzido e fonte Atkinson Hyperlegible, desenhada para leitores com baixa visão.</td></tr>
+<tr><th scope="row">Compatibilidade</th><td>HTML, CSS e JavaScript em arquivos separados (estrutura, estilo e interações), responsivo, sem dependências de servidor. Pode ser publicado no Moodle como pacote de arquivos ou empacotado como SCORM.</td></tr>
+<tr><th scope="row">Ferramentas</th><td>Roteiro, desenho instrucional e revisão de conteúdo pela autora. IA generativa (Claude) como apoio na redação de rascunhos e na codificação HTML/CSS/JS, com revisão integral da autora. Base metodológica: Gerenciamento pelas Diretrizes, Pareto, Ishikawa, 5 porquês e 5W2H.</td></tr>
+</tbody>
+</table></div>
+<footer class="autoria">Projeto autoral demonstrativo · Desenvolvido por Maiara Machado, 2026 · Caso e dados fictícios, criados para fins didáticos.</footer>
 </section>
-
-  </main>
+</main>
 </div>
 
-<script>
-(function(){
-  const VIEWS=[
-    {id:"inicio",t:"Boas-vindas",s:"Objetivos e caso"},
-    {id:"m1",t:"Anatomia de uma meta",s:"Módulo 1 · 10 min"},
-    {id:"m2",t:"Desdobramento",s:"Módulo 2 · 20 min"},
-    {id:"m3",t:"Faixas e mensalização",s:"Módulo 3 · 15 min"},
-    {id:"m4",t:"Análise de causa raiz",s:"Módulo 4 · 15 min"},
-    {id:"m5",t:"Plano de ação 5W2H",s:"Módulo 5 · 15 min"},
-    {id:"m6",t:"Acompanhamento e projeção",s:"Módulo 6 · 15 min"},
-    {id:"avaliacao",t:"Avaliação final",s:"6 questões"}
-  ];
-  const fmt=n=>Math.round(n).toLocaleString("pt-BR");
-  const pct=(n,d=1)=>n.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d})+"%";
-  const css=v=>getComputedStyle(document.documentElement).getPropertyValue(v).trim();
-
-  /* ---------- Navegação e progresso ---------- */
-  const navList=document.getElementById("navList");
-  navList.innerHTML=VIEWS.map(v=>`<li><a href="#${v.id}" data-view="${v.id}"><span class="st" aria-hidden="true"></span><span>${v.t}<small>${v.s}</small></span></a></li>`).join("");
-  let visited=new Set();
-  try{ visited=new Set(JSON.parse(localStorage.getItem("mmr-visited")||"[]")); }catch(e){}
-  function saveVisited(){ try{ localStorage.setItem("mmr-visited",JSON.stringify([...visited])); }catch(e){} }
-  function updateProgress(){
-    const n=VIEWS.filter(v=>visited.has(v.id)).length;
-    document.getElementById("progTxt").textContent=`${n} de ${VIEWS.length} etapas`;
-    const p=Math.round(n/VIEWS.length*100);
-    const bar=document.getElementById("progBar"); bar.setAttribute("aria-valuenow",p); bar.firstElementChild.style.width=p+"%";
-    document.querySelectorAll("nav.trilha a").forEach(a=>a.classList.toggle("done",visited.has(a.dataset.view)&&a.dataset.view!=="sobre"));
-  }
-  const valid=["inicio","m1","m2","m3","m4","m5","m6","avaliacao","sobre"];
-  function show(id,focus){
-    if(!valid.includes(id)) id="inicio";
-    document.querySelectorAll("section.mod").forEach(s=>s.hidden=s.dataset.view!==id);
-    document.querySelectorAll("nav.trilha a").forEach(a=>{ if(a.dataset.view===id) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
-    visited.add(id); saveVisited(); updateProgress();
-    if(id==="m2") drawPareto();
-    if(id==="m3") renderMens();
-    document.getElementById("trilha").classList.remove("open");
-    document.getElementById("menuBtn").setAttribute("aria-expanded","false");
-    if(focus){ window.scrollTo({top:0}); const h=document.querySelector(`section[data-view="${id}"] h1, section[data-view="${id}"] h2`); if(h){h.setAttribute("tabindex","-1"); h.focus({preventScroll:true});} }
-  }
-  window.addEventListener("hashchange",()=>show(location.hash.slice(1),true));
-  document.getElementById("menuBtn").addEventListener("click",e=>{
-    const t=document.getElementById("trilha"); const o=t.classList.toggle("open"); e.currentTarget.setAttribute("aria-expanded",String(o));
-  });
-
-  /* ---------- M1: classificador ---------- */
-  const STMTS=[
-    {q:"Aumentar as vendas da filial.",ok:false,fb:"Incompleta. Tem o objetivo gerencial, mas falta o valor (de quanto para quanto) e o prazo. Ninguém consegue dizer se foi atingida."},
-    {q:"Reduzir o tempo médio de atendimento de 12 para 8 minutos até junho de 2027.",ok:true,fb:"Completa. Objetivo (reduzir o tempo médio de atendimento), valor (de 12 para 8 minutos) e prazo (até junho de 2027)."},
-    {q:"Atingir NPS 70.",ok:false,fb:"Incompleta. Tem um valor de chegada, mas não tem prazo nem ponto de partida. Sem prazo, não é possível acompanhar o ritmo."},
-    {q:"Reduzir em 30% os chamados reabertos até dezembro de 2027.",ok:true,fb:"Completa. Um ajuste recomendado: registrar a base de referência (por exemplo, a média de 2026), para que os 30% sejam calculados sobre um número conhecido."}
-  ];
-  document.getElementById("classif").innerHTML=STMTS.map((s,i)=>`
-    <div class="stmt"><q>${s.q}</q>
-      <div class="choices" role="group" aria-label="Classificar a meta ${i+1}">
-        <button type="button" class="btn" data-i="${i}" data-a="1">Completa</button>
-        <button type="button" class="btn" data-i="${i}" data-a="0">Incompleta</button>
-      </div><div aria-live="polite" id="cfb${i}"></div></div>`).join("");
-  document.getElementById("classif").addEventListener("click",e=>{
-    const b=e.target.closest("button[data-i]"); if(!b) return;
-    const s=STMTS[b.dataset.i]; const right=(b.dataset.a==="1")===s.ok;
-    b.parentElement.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
-    document.getElementById("cfb"+b.dataset.i).innerHTML=`<div class="fb ${right?"ok":"no"}"><b>${right?"Correto.":"Não exatamente."}</b> ${s.fb}</div>`;
-  });
-
-  /* ---------- M2: Pareto ---------- */
-  const CAUSES=[["Roteirização",1680],["Endereço incorreto",1250],["Falta de veículo",820],["Separação no CD",560],["Clima e trânsito",300],["Outros",190]];
-  function drawPareto(){
-    const svg=document.getElementById("pareto"); const W=640,H=320,L=48,R=48,T=16,B=64;
-    const total=CAUSES.reduce((a,c)=>a+c[1],0), max=2000, bw=(W-L-R)/CAUSES.length;
-    const ink=css("--ink"),mut=css("--muted"),line=css("--line"),acc=css("--accent"),sig=css("--signal");
-    const y=v=>T+(H-T-B)*(1-v/max), y2=p=>T+(H-T-B)*(1-p/100);
-    let g=`<title id="paretoT">Gráfico de Pareto dos atrasos da Lumen em 2026</title><desc id="paretoD">Roteirização 1.680, endereço incorreto 1.250, falta de veículo 820, separação no centro de distribuição 560, clima e trânsito 300, outros 190. As duas primeiras causas somam 61% dos atrasos.</desc>`;
-    [0,500,1000,1500,2000].forEach(v=>{ g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="${line}" stroke-width="1"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="${mut}" font-family="JetBrains Mono, monospace">${fmt(v)}</text>`; });
-    [0,50,100].forEach(p=>{ g+=`<text x="${W-R+8}" y="${y2(p)+4}" font-size="11" fill="${sig}" font-family="JetBrains Mono, monospace">${p}%</text>`; });
-    let acum=0, pts=[];
-    CAUSES.forEach((c,i)=>{
-      const x=L+i*bw+bw*.16, w=bw*.68; acum+=c[1]; const p=acum/total*100;
-      g+=`<rect x="${x}" y="${y(c[1])}" width="${w}" height="${y(0)-y(c[1])}" rx="3" fill="${acc}" opacity="${i<2?1:.55}"/>`;
-      g+=`<text x="${x+w/2}" y="${y(c[1])-6}" text-anchor="middle" font-size="11" fill="${ink}" font-family="JetBrains Mono, monospace">${fmt(c[1])}</text>`;
-      const lbl=c[0].split(" "); g+=`<text x="${x+w/2}" y="${H-B+18}" text-anchor="middle" font-size="11" fill="${mut}">${lbl[0]}</text>`;
-      if(lbl[1]) g+=`<text x="${x+w/2}" y="${H-B+32}" text-anchor="middle" font-size="11" fill="${mut}">${lbl.slice(1).join(" ")}</text>`;
-      pts.push([x+w/2,y2(p),p]);
-    });
-    g+=`<polyline points="${pts.map(p=>p[0]+","+p[1]).join(" ")}" fill="none" stroke="${sig}" stroke-width="2.5"/>`;
-    pts.forEach(p=>{ g+=`<circle cx="${p[0]}" cy="${p[1]}" r="4" fill="${sig}"/>`; });
-    pts.slice(0,3).forEach(p=>{ g+=`<text x="${p[0]+8}" y="${p[1]-8}" font-size="11" fill="${sig}" font-family="JetBrains Mono, monospace">${Math.round(p[2])}%</text>`; });
-    svg.innerHTML=g;
-  }
-
-  /* ---------- M2: simulador de desdobramento ---------- */
-  const SIM=[{k:"rot",n:"Roteirização",base:1680,v:65},{k:"end",n:"Endereço incorreto",base:1250,v:60},{k:"fro",n:"Falta de veículo",base:820,v:50},{k:"cd",n:"Separação no CD",base:560,v:30}];
-  document.getElementById("simRows").innerHTML=SIM.map(s=>`
-    <div class="sim-row"><label for="s-${s.k}">${s.n}<br><span class="hint mono">${fmt(s.base)} atrasos</span></label>
-    <input type="range" id="s-${s.k}" min="0" max="90" step="5" value="${s.v}"><output for="s-${s.k}" id="o-${s.k}">−${s.v}%</output></div>`).join("");
-  function sim(){
-    let elim=0;
-    SIM.forEach(s=>{ s.v=+document.getElementById("s-"+s.k).value; document.getElementById("o-"+s.k).textContent="−"+s.v+"%"; document.getElementById("t-"+s.k).textContent="−"+s.v+"%"; elim+=s.base*s.v/100; });
-    const atrasos=4800-elim, rate=(40000-atrasos)/40000*100;
-    document.getElementById("simRate").textContent=pct(rate);
-    const pill=document.getElementById("simPill"), gap=document.getElementById("simGap");
-    if(rate>=94){ pill.className="pill ok"; pill.textContent="Desdobramento suficiente"; gap.textContent=`Elimina ${fmt(elim)} atrasos, ${fmt(elim-2400)} acima do necessário.`; }
-    else{ pill.className="pill bad"; pill.textContent="Desdobramento insuficiente"; gap.textContent=`Faltam ${fmt(2400-elim)} atrasos para fechar a conta.`; }
-  }
-  document.getElementById("simRows").addEventListener("input",sim); sim();
-
-  /* ---------- M3: mensalização ---------- */
-  const MESES=["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
-  const PESO=[7.0,6.8,7.9,7.8,8.6,7.9,7.6,8.0,7.8,8.4,11.2,11.0];
-  let modo="saz";
-  function pesos(){ return modo==="saz"?PESO:MESES.map(()=>100/12); }
-  function renderMens(){
-    const A=Math.max(0,+document.getElementById("mAnual").value||0), G=(+document.getElementById("mGat").value||90)/100, S=(+document.getElementById("mSup").value||110)/100;
-    const p=pesos(), vals=p.map(x=>A*x/100);
-    document.querySelector("#mensTbl tbody").innerHTML=MESES.map((m,i)=>`<tr><td>${m}</td><td class="num">${pct(p[i])}</td><td class="num">${fmt(vals[i]*G)}</td><td class="num"><b>${fmt(vals[i])}</b></td><td class="num">${fmt(vals[i]*S)}</td></tr>`).join("")+
-      `<tr><td><b>Total</b></td><td class="num">100,0%</td><td class="num">${fmt(A*G)}</td><td class="num"><b>${fmt(A)}</b></td><td class="num">${fmt(A*S)}</td></tr>`;
-    const svg=document.getElementById("mensChart"), W=640,H=240,L=52,R=12,T=14,B=28;
-    const mx=Math.max(...vals.map(v=>v*S))*1.08||1, bw=(W-L-R)/12;
-    const mut=css("--muted"),line=css("--line"),acc=css("--accent"),sig=css("--signal"),ink=css("--ink");
-    const y=v=>T+(H-T-B)*(1-v/mx);
-    const step=Math.pow(10,Math.floor(Math.log10(mx/4||1))); const nice=Math.ceil(mx/4/step)*step;
-    let g="";
-    for(let v=0;v<=mx;v+=nice){ g+=`<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="${line}"/><text x="${L-8}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="${mut}" font-family="JetBrains Mono, monospace">${fmt(v)}</text>`; }
-    vals.forEach((v,i)=>{
-      const x=L+i*bw+bw*.18,w=bw*.64;
-      g+=`<rect x="${x}" y="${y(v)}" width="${w}" height="${y(0)-y(v)}" rx="3" fill="${acc}"/>`;
-      g+=`<line x1="${x-2}" x2="${x+w+2}" y1="${y(v*G)}" y2="${y(v*G)}" stroke="${ink}" stroke-width="1.5" stroke-dasharray="3 2"/>`;
-      g+=`<line x1="${x-2}" x2="${x+w+2}" y1="${y(v*S)}" y2="${y(v*S)}" stroke="${sig}" stroke-width="2"/>`;
-      g+=`<text x="${x+w/2}" y="${H-8}" text-anchor="middle" font-size="11" fill="${mut}">${MESES[i]}</text>`;
-    });
-    svg.innerHTML=g;
-    svg.setAttribute("aria-label",`Meta mensal de entregas, distribuição ${modo==="saz"?"sazonal":"linear"}. Maior mês: ${MESES[vals.indexOf(Math.max(...vals))]} com ${fmt(Math.max(...vals))}.`);
-  }
-  if(!document.getElementById("mensLeg")){
-    const leg=document.createElement("div"); leg.className="legend"; leg.id="mensLeg";
-    leg.innerHTML=`<span><i style="background:var(--accent)"></i>Alvo</span><span><i style="background:var(--ink);height:2px;vertical-align:3px"></i>Gatilho</span><span><i style="background:var(--signal);height:3px;vertical-align:3px"></i>Superação</span>`;
-    document.getElementById("mensChart").after(leg);
-  }
-  ["mAnual","mGat","mSup"].forEach(id=>document.getElementById(id).addEventListener("input",renderMens));
-  document.getElementById("dSaz").addEventListener("click",()=>{modo="saz";document.getElementById("dSaz").setAttribute("aria-pressed","true");document.getElementById("dLin").setAttribute("aria-pressed","false");renderMens();});
-  document.getElementById("dLin").addEventListener("click",()=>{modo="lin";document.getElementById("dLin").setAttribute("aria-pressed","true");document.getElementById("dSaz").setAttribute("aria-pressed","false");renderMens();});
-
-  /* ---------- M4: Ishikawa ---------- */
-  const SIXM={
-    "Método":["Roteiros montados uma vez por semana, sem ajuste diário","Janela de entrega do cliente não é considerada no roteiro"],
-    "Máquina":["Sistema de roteirização usa tempo de parada fixo de 5 min","Mapas do sistema desatualizados em bairros novos"],
-    "Mão de obra":["Planejadores sem treinamento no sistema atual","Motoristas novos sem conhecimento da região"],
-    "Material":["Cadastro de clientes sem horário de recebimento","Pedidos chegam ao planejamento sem volume e peso"],
-    "Meio ambiente":["Restrições de circulação de caminhões no centro","Obras viárias não comunicadas ao planejamento"],
-    "Medida":["O atraso é medido só no fim do mês","Não existe indicador de aderência ao roteiro"]
-  };
-  const sixm=document.getElementById("sixm");
-  sixm.innerHTML=Object.keys(SIXM).map(k=>`<button type="button" aria-pressed="false" data-k="${k}">${k}</button>`).join("");
-  sixm.addEventListener("click",e=>{
-    const b=e.target.closest("button"); if(!b) return;
-    sixm.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed",String(x===b)));
-    document.getElementById("sixmOut").innerHTML=`<p><b>${b.dataset.k}:</b> causas levantadas pela equipe</p><ul class="clean">${SIXM[b.dataset.k].map(c=>`<li>${c}</li>`).join("")}</ul>`;
-  });
-  sixm.querySelector("button").click();
-
-  /* ---------- M4: 5 porquês ---------- */
-  const WHY=[
-    ["Problema","35% dos atrasos da Lumen vêm de roteirização."],
-    ["Por quê 1","As rotas são planejadas com mais paradas do que cabem na janela de entrega."],
-    ["Por quê 2","O sistema calcula cada parada com 5 minutos, mas a média real é de 9 minutos."],
-    ["Por quê 3","O parâmetro de tempo de parada foi configurado na implantação, em 2021, e nunca foi revisado."],
-    ["Por quê 4","Não existe rotina de revisão dos parâmetros nem um responsável por eles."],
-    ["Causa raiz","Ausência de padrão e de responsável pela manutenção dos parâmetros do sistema de roteirização. Ação derivada: definir um dono e revisar os parâmetros a cada trimestre com dados reais de campo."]
-  ];
-  let wi=1;
-  function renderWhy(){
-    document.getElementById("whyList").innerHTML=WHY.slice(0,wi).map((w,i)=>`<li class="${i===WHY.length-1?"root":""}"><b>${w[0]}</b><span>${w[1]}</span></li>`).join("");
-    const nb=document.getElementById("whyNext"); nb.disabled=wi>=WHY.length; nb.textContent=wi>=WHY.length-1?"Revelar causa raiz":"Perguntar “por quê?”";
-  }
-  document.getElementById("whyNext").addEventListener("click",()=>{ if(wi<WHY.length){wi++;renderWhy();} });
-  document.getElementById("whyReset").addEventListener("click",()=>{wi=1;renderWhy();});
-  renderWhy();
-
-  /* ---------- M5: 5W2H ---------- */
-  const PLAN=[
-    {what:"Revisar o tempo de parada no sistema de roteirização",why:"Causa raiz: parâmetro de 5 min contra 9 min reais",where:"Planejamento de Rotas",who:"Carlos Teixeira",when:"2027-02-28",how:"Medir paradas reais por 4 semanas e atualizar o parâmetro por tipo de cliente",much:"R$ 0"},
-    {what:"Definir responsável e rotina trimestral de revisão de parâmetros",why:"Evitar que o parâmetro fique desatualizado de novo",where:"Planejamento de Rotas",who:"Carlos Teixeira",when:"2027-03-15",how:"Criar procedimento padrão e incluir na reunião de resultados do trimestre",much:"R$ 0"}
-  ];
-  function dBR(s){ if(!s) return "–"; const [y,m,d]=s.split("-"); return `${d}/${m}/${y}`; }
-  const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-  function renderPlan(){ document.querySelector("#planTbl tbody").innerHTML=PLAN.map(r=>`<tr><td>${esc(r.what)}</td><td>${esc(r.why)}</td><td>${esc(r.where)}</td><td>${esc(r.who)}</td><td class="mono">${dBR(r.when)}</td><td>${esc(r.how)}</td><td class="num">${esc(r.much||"–")}</td></tr>`).join(""); }
-  renderPlan();
-  document.getElementById("w2h").addEventListener("submit",e=>{
-    e.preventDefault();
-    const v=id=>document.getElementById(id).value.trim();
-    const r={what:v("wWhat"),why:v("wWhy"),where:v("wWhere"),who:v("wWho"),when:v("wWhen"),how:v("wHow"),much:v("wMuch")};
-    const issues=[];
-    if(!r.what) issues.push("Preencha <b>O quê</b>.");
-    else{ const w=r.what.split(/\s+/)[0].toLowerCase(); if(!/(ar|er|ir|or)$/.test(w)) issues.push(`<b>O quê</b> deve começar com verbo no infinitivo (implantar, revisar, criar). "${esc(r.what.split(/\s+/)[0])}" não parece ser um.`); }
-    if(!r.why) issues.push("Preencha <b>Por quê</b>, ligando a ação a uma causa.");
-    if(!r.who) issues.push("Indique <b>Quem</b> é responsável.");
-    else if(/\b(equipe|time|todos|área|setor|gerência)\b|\/|\se\s/i.test(r.who)) issues.push("<b>Quem</b> deve ser uma única pessoa. Responsabilidade compartilhada costuma virar responsabilidade de ninguém.");
-    if(!r.when) issues.push("Defina uma data em <b>Quando</b>.");
-    if(!r.how) issues.push("Descreva <b>Como</b> a ação será executada.");
-    const fb=document.getElementById("wFb");
-    if(issues.length){ fb.innerHTML=`<div class="fb no"><b>Ajuste antes de adicionar:</b><ul class="clean" style="margin-top:6px">${issues.map(i=>`<li>${i}</li>`).join("")}</ul></div>`; return; }
-    PLAN.push(r); renderPlan(); e.target.reset();
-    fb.innerHTML=`<div class="fb ok"><b>Ação adicionada ao plano.</b> Ela tem dono, prazo e método, então pode ser acompanhada na reunião de resultados.</div>`;
-  });
-
-  /* ---------- M6: projeção ---------- */
-  const pMes=document.getElementById("pMes");
-  pMes.innerHTML=MESES.slice(0,11).map((m,i)=>`<option value="${i+1}"${i===5?" selected":""}>${m} (mês ${i+1})</option>`).join("");
-  function farol(p){ return p>=100?["ok","Verde"]:p>=90?["warn","Amarelo"]:["bad","Vermelho"]; }
-  function proj(){
-    const M=+document.getElementById("pMeta").value||0, n=+pMes.value, R=+document.getElementById("pReal").value||0;
-    const lin=R/n*12, share=PESO.slice(0,n).reduce((a,b)=>a+b,0)/100, saz=share?R/share:0;
-    const pl=M?lin/M*100:0, ps=M?saz/M*100:0;
-    document.getElementById("pLin").textContent=`${fmt(lin)} (${pct(pl)})`;
-    document.getElementById("pSaz").textContent=`${fmt(saz)} (${pct(ps)})`;
-    const [cl,tl]=farol(pl),[cs,ts]=farol(ps);
-    const a=document.getElementById("pLinPill"); a.className="pill "+cl; a.textContent=tl;
-    const b=document.getElementById("pSazPill"); b.className="pill "+cs; b.textContent=ts;
-    const esperado=M*share, ritmo=(M-R)/(12-n);
-    document.getElementById("pTxt").innerHTML=`Até ${MESES[n-1].toLowerCase()}, a sazonalidade previa <b class="mono">${fmt(esperado)}</b> entregas (${pct(share*100)} da meta). A Lumen realizou <b class="mono">${fmt(R)}</b>, ${R>=esperado?"acima":"abaixo"} do previsto em <b class="mono">${fmt(Math.abs(R-esperado))}</b>. Para fechar o ano no alvo, precisa de <b class="mono">${fmt(ritmo)}</b> entregas por mês até dezembro.`+(cl!==cs?` <b>Repare:</b> a projeção linear e a sazonal dão farol diferente. Ignorar a sazonalidade levaria a uma decisão errada.`:"");
-  }
-  ["pMeta","pReal"].forEach(id=>document.getElementById(id).addEventListener("input",proj)); pMes.addEventListener("change",proj); proj();
-
-  /* ---------- Avaliação ---------- */
-  const QZ=[
-    {q:"Qual das opções é uma meta completa?",o:["Melhorar a satisfação dos clientes em 2027.","Aumentar a taxa de entregas no prazo de 88% para 94% até dezembro de 2027.","Atingir 94% de entregas no prazo.","Reduzir os atrasos o máximo possível."],c:1,e:["Falta valor: quanto melhorar, medido por qual indicador?","Tem objetivo gerencial, valor de partida e de chegada, e prazo.","Falta prazo e ponto de partida.","“O máximo possível” não é um valor. Não dá para saber se foi atingida."]},
-    {q:"Por que estratificar o problema antes de desdobrar a meta?",o:["Para dividir a meta igualmente entre todas as áreas.","Para identificar os poucos fatores que explicam a maior parte do problema e colocar as metas onde está a alavanca.","Para aumentar o número de indicadores acompanhados.","Porque a estratificação substitui a análise de causa raiz."],c:1,e:["Divisão igual ignora onde o problema realmente está.","É o princípio de Pareto aplicado ao desdobramento.","Mais indicadores não significam melhor gestão.","A estratificação mostra onde está o problema. A análise de causa mostra por quê. Uma não substitui a outra."]},
-    {q:"A meta anual é de 94% de entregas no prazo. Como mensalizá-la?",o:["Dividir 94% por 12 e somar os meses.","Garantir que a soma das metas mensais dê 94%.","Definir uma curva de evolução da taxa ao longo dos meses, conforme o efeito esperado das ações.","Usar 94% em todos os meses, sem exceção."],c:2,e:["Percentuais não se dividem nem se somam assim.","Somar taxas mensais não produz uma taxa anual.","Para metas em taxa, define-se a evolução esperada mês a mês.","Possível, mas ignora que as ações levam tempo para fazer efeito. Os primeiros meses ficariam vermelhos por construção."]},
-    {q:"Quando parar de perguntar “por quê?” na técnica dos 5 porquês?",o:["Sempre na quinta pergunta.","Quando a resposta apontar para outra área.","Quando chegar a uma causa sobre a qual a equipe pode agir e que, eliminada, impede o problema de voltar.","Quando a equipe concordar com uma resposta."],c:2,e:["O número cinco é uma referência, não uma regra.","Apontar para outra área costuma ser fuga da causa, não a causa.","Esse é o critério de causa raiz.","Consenso não garante que a causa foi encontrada."]},
-    {q:"Qual ação de 5W2H está mais bem definida?",o:["O quê: Melhoria do roteiro · Quem: equipe de rotas · Quando: o quanto antes","O quê: Revisar o tempo de parada no sistema · Quem: Carlos Teixeira · Quando: 28/02/2027","O quê: Rotas · Quem: Planejamento · Quando: 1º semestre","O quê: Tentar reduzir atrasos · Quem: todos · Quando: 2027"],c:1,e:["Sem verbo no infinitivo, responsável coletivo e prazo vago.","Verbo no infinitivo, uma pessoa responsável e uma data.","Sem verbo, responsável coletivo e prazo impreciso.","“Tentar” não é ação, “todos” não é dono, “2027” não é prazo."]},
-    {q:"Em junho, a Lumen realizou 45% da meta anual de volume. O segundo semestre historicamente concentra 54% do volume. O que concluir?",o:["A meta será perdida: a projeção linear indica 90%.","É preciso ajustar a projeção pela sazonalidade antes de decidir, porque o segundo semestre pesa mais.","Basta esperar dezembro para avaliar.","A meta deve ser revista para baixo imediatamente."],c:1,e:["A projeção linear ignora que o segundo semestre é mais forte.","Ajustada, a projeção fica em torno de 98% da meta: farol amarelo, não vermelho. A decisão muda.","Esperar dezembro elimina a chance de agir.","Revisar a meta sem analisar a projeção correta é precipitado."]}
-  ];
-  const quiz=document.getElementById("quiz");
-  quiz.innerHTML=QZ.map((x,i)=>`<div class="q"><fieldset><legend>${i+1}. ${x.q}</legend>${x.o.map((o,j)=>`<label class="opt" id="o${i}_${j}"><input type="radio" name="q${i}" value="${j}"><span>${o}</span></label>`).join("")}</fieldset><div id="qe${i}" aria-live="polite"></div></div>`).join("")+
-    `<div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap"><button class="btn pri" type="submit">Enviar respostas</button><button class="btn" type="button" id="qReset">Refazer</button><span id="qScore" class="score" aria-live="polite"></span></div>`;
-  quiz.addEventListener("submit",e=>{
-    e.preventDefault(); let s=0, missing=0;
-    QZ.forEach((x,i)=>{
-      const sel=quiz.querySelector(`input[name="q${i}"]:checked`);
-      x.o.forEach((_,j)=>document.getElementById(`o${i}_${j}`).classList.remove("right","wrong"));
-      if(!sel){ missing++; document.getElementById("qe"+i).innerHTML=`<div class="fb no">Escolha uma alternativa.</div>`; return; }
-      const j=+sel.value, ok=j===x.c; if(ok) s++;
-      document.getElementById(`o${i}_${x.c}`).classList.add("right"); if(!ok) document.getElementById(`o${i}_${j}`).classList.add("wrong");
-      document.getElementById("qe"+i).innerHTML=`<div class="fb ${ok?"ok":"no"}"><b>${ok?"Correto.":"Não exatamente."}</b> ${x.e[j]}${ok?"":" <br><b>Resposta esperada:</b> "+x.e[x.c]}</div>`;
-    });
-    document.getElementById("qScore").textContent=missing?`Faltam ${missing} questão(ões)`:`${s} de ${QZ.length} acertos`;
-  });
-  document.getElementById("qReset").addEventListener("click",()=>{ quiz.reset(); quiz.querySelectorAll(".opt").forEach(o=>o.classList.remove("right","wrong")); QZ.forEach((_,i)=>document.getElementById("qe"+i).innerHTML=""); document.getElementById("qScore").textContent=""; });
-
-  /* ---------- Tema: redesenha gráficos ---------- */
-  try{ matchMedia("(prefers-color-scheme: dark)").addEventListener("change",()=>{drawPareto();renderMens();}); }catch(e){}
-  new MutationObserver(()=>{drawPareto();renderMens();}).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
-
-  drawPareto(); renderMens();
-  show(location.hash.slice(1)||"inicio",false);
-})();
-</script>
-
+<script src="js/curso.js"></script>
 </body>
 </html>

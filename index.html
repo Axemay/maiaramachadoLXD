@@ -1,45 +1,30 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
-<title>Portfólio Maiara Machado</title>
-<meta name="claude:viewport-fit-sides" content="cover">
-<meta name="description" content="Portfólio de design instrucional e editoração digital educacional de Maiara Machado.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=JetBrains+Mono:wght@500&display=swap">
-<style>
-/* Layout: navegação fixa; abertura com proposta de valor e credenciais; projetos com filtro; laboratório interativo; processo; sobre; contato */
-:root{
-  --bg:#FAFBFC; --surface:#FFFFFF; --ink:#1E2A35; --muted:#55606D; --line:#E1E6EB; --soft:#EEF2F5;
-  --accent:#167C8A; --accent-ink:#FFFFFF; --accent-soft:#E3F1F3; --signal:#9A6600; --signal-soft:#F7ECD3;
-  --deep:#EAF4F5; --deep-ink:#1E2A35; --deep-muted:#55606D;
-  --ok:#2C7A4B; --ok-soft:#E0F1E6; --bad:#B3261E; --bad-soft:#FBE3E1;
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{
+  --bg:#FFFFFF; --surface:#FFFFFF; --ink:#1D2433; --muted:#56625F; --line:#D9E2DF; --soft:#F4F7F6;
+  --accent:#1F6F68; --accent-strong:#164E4A; --accent-ink:#FFFFFF; --accent-soft:#E1F1ED; --signal:#B4561F; --signal-soft:#FFF1E6;
+  --menu:#164E4A; --menu-ink:#F2FBF8; --menu-muted:#A9D3CA; --menu-accent:#7FE0C8; --menu-line:rgba(255,255,255,.2);
+  --highlight:#FF9F6E; --band-case:#FFF1E6; --band-activity:#EEF4F2;
+  --deep:#EEF4F2; --deep-ink:#1D2433; --deep-muted:#56625F;
+  --ok:#1D714A; --ok-soft:#E6F5EC; --bad:#A8261D; --bad-soft:#FCEBE9;
   --f-display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
   --f-body:"Atkinson Hyperlegible","Segoe UI",system-ui,sans-serif;
-  --f-mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#0E151C; --surface:#151F29; --ink:#E5EAEF; --muted:#9BA8B5; --line:#273544; --soft:#1C2834;
-  --accent:#55B4C4; --accent-ink:#06232A; --accent-soft:#163640; --signal:#E3AC34; --signal-soft:#3A2D10;
-  --deep:#0A2C33; --deep-ink:#E5EFF1; --deep-muted:#93B4BA;
-  --ok:#62C08A; --ok-soft:#163626; --bad:#F0726A; --bad-soft:#3E1C1A; color-scheme:dark; } }
-:root[data-theme="dark"]{
-  --bg:#0E151C; --surface:#151F29; --ink:#E5EAEF; --muted:#9BA8B5; --line:#273544; --soft:#1C2834;
-  --accent:#55B4C4; --accent-ink:#06232A; --accent-soft:#163640; --signal:#E3AC34; --signal-soft:#3A2D10;
-  --deep:#0A2C33; --deep-ink:#E5EFF1; --deep-muted:#93B4BA;
-  --ok:#62C08A; --ok-soft:#163626; --bad:#F0726A; --bad-soft:#3E1C1A; color-scheme:dark; }
 
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{scroll-behavior:smooth;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 72px)}
 body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:17px;line-height:1.6}
-body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--surface)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--menu)}
 a{color:var(--accent)}
 button{font:inherit;cursor:pointer}
-:focus-visible{outline:3px solid var(--signal);outline-offset:3px;border-radius:4px}
+:focus-visible{outline:3px solid var(--highlight);outline-offset:3px;border-radius:4px}
 .skip{position:absolute;left:-9999px;top:0;background:var(--accent);color:var(--accent-ink);padding:8px 14px;z-index:30}
 .skip:focus{left:16px;top:16px}
 h1,h2,h3{font-family:var(--f-display);line-height:1.1;text-wrap:balance;margin:0}
 p{margin:0}
 .wrap{max-width:1100px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
-.eyebrow{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent);font-weight:700}
+.eyebrow{font-family:var(--f-mono);font-size:.76rem;text-transform:uppercase;letter-spacing:.1em;color:var(--accent)}
 section{padding-block:64px}
 .sec-head{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;max-width:64ch}
 .sec-head h2{font-size:clamp(1.7rem,4vw,2.5rem);letter-spacing:-.015em}
@@ -47,29 +32,38 @@ section{padding-block:64px}
 .btn{display:inline-flex;align-items:center;gap:8px;border-radius:8px;padding:11px 18px;font-weight:700;font-size:.97rem;text-decoration:none;border:1px solid var(--line);color:var(--ink);background:var(--surface)}
 .btn:hover{background:var(--soft)}
 .btn.pri{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
-.btn.pri:hover{filter:brightness(1.08)}
+.btn.pri:hover{background:var(--accent-strong);border-color:var(--accent-strong)}
 
 /* Navegação */
-.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--surface);border-bottom:1px solid var(--line)}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--menu);border-bottom:1px solid var(--menu-line)}
 .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px;flex-wrap:wrap;padding-block:8px}
-.mark{font-family:var(--f-display);font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none}
-.mark span{color:var(--muted);font-weight:500}
+.mark{font-family:var(--f-display);font-weight:700;font-size:1.05rem;color:var(--menu-ink);text-decoration:none}
+.mark span{color:var(--menu-muted);font-weight:500}
 .top nav{display:flex;gap:20px;font-size:.9rem;font-weight:700;flex-wrap:wrap}
-.top nav a{color:var(--ink);text-decoration:none}
-.top nav a:hover{color:var(--accent)}
+.top nav a{color:var(--menu-ink);text-decoration:none}
+.top nav a:hover{color:var(--highlight)}
 
-/* Abertura */
-.hero{padding-block:72px 56px}
-.hero-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,1fr);gap:48px;align-items:end}
-.hero h1{font-size:clamp(2.2rem,5.4vw,3.6rem);font-weight:700;letter-spacing:-.025em;margin-top:14px}
-.hero h1 em{font-style:normal;color:var(--accent)}
-.hero .lead{margin-top:20px;max-width:56ch;font-size:1.12rem;color:var(--muted)}
+/* Abertura: vitrine em petróleo com as peças empilhadas */
+.hero{background:var(--menu);color:var(--menu-ink);padding-block:64px 0;border-bottom:10px solid var(--highlight);overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;align-items:center}
+.hero .eyebrow{color:var(--menu-accent)}
+.hero h1{font-size:clamp(2.2rem,5.2vw,3.5rem);font-weight:800;letter-spacing:-.025em;margin-top:14px}
+.hero h1 em{font-style:normal;color:var(--highlight)}
+.hero .lead{margin-top:20px;max-width:52ch;font-size:1.1rem;color:#CFE8E2}
 .hero .cta{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
-.facts{display:flex;flex-direction:column;border-left:2px solid var(--accent);padding-left:22px}
-.facts div{padding-block:12px;border-bottom:1px solid var(--line)}
-.facts div:last-child{border-bottom:0}
-.facts b{display:block;font-family:var(--f-display);font-size:1.15rem}
-.facts span{font-size:.9rem;color:var(--muted)}
+.hero .btn{background:transparent;color:var(--menu-ink);border-color:rgba(255,255,255,.35)}
+.hero .btn:hover{background:rgba(255,255,255,.1)}
+.hero .btn.pri{background:var(--highlight);border-color:var(--highlight);color:var(--menu)}
+.hero .btn.pri:hover{filter:brightness(1.06)}
+.facts{display:flex;gap:28px;flex-wrap:wrap;margin-block:36px 56px;padding-top:20px;border-top:1px solid var(--menu-line)}
+.facts div{display:flex;flex-direction:column;min-width:0}
+.facts b{font-family:var(--f-display);font-size:1.1rem}
+.facts span{font-size:.86rem;color:var(--menu-muted)}
+.stack{position:relative;height:400px;align-self:end}
+.stack img{position:absolute;width:78%;max-width:100%;border-radius:10px;border:4px solid #FFFFFF;box-shadow:0 24px 44px -22px rgba(0,0,0,.65)}
+.stack img:nth-child(1){left:0;top:24px;transform:rotate(-3deg)}
+.stack img:nth-child(2){right:0;top:0;transform:rotate(2.5deg)}
+.stack img:nth-child(3){left:11%;top:150px;transform:rotate(-.5deg)}
 
 /* Entregas */
 .deliver{border-block:1px solid var(--line);background:var(--surface);padding-block:28px}
@@ -88,6 +82,8 @@ section{padding-block:64px}
 .projects.single .thumb{border-bottom:0;border-right:1px solid var(--line);aspect-ratio:auto;min-height:280px}
 .proj{background:var(--surface);border:1px solid var(--line);border-radius:12px;overflow:hidden;display:flex;flex-direction:column;min-width:0}
 .thumb{aspect-ratio:16/9;max-width:100%;background:var(--soft);border-bottom:1px solid var(--line);padding:20px;display:flex}
+.thumb.shot{padding:0;overflow:hidden}
+.thumb.shot img{display:block;width:100%;height:100%;object-fit:cover;object-position:top left}
 .proj-body{padding:22px;display:flex;flex-direction:column;gap:12px;flex:1;min-width:0}
 .proj-top{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
 .fmt{font-family:var(--f-mono);font-size:.74rem;color:var(--muted);text-transform:uppercase;letter-spacing:.06em}
@@ -140,13 +136,13 @@ dl.spec dd{margin:0}
 
 /* Laboratório */
 .lab{background:var(--deep);color:var(--deep-ink)}
-.lab .eyebrow{color:var(--signal)}
+.lab .eyebrow{color:var(--accent)}
 .lab .sec-head p{color:var(--deep-muted)}
 .lab-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:48px;align-items:start}
 .lab-why{display:flex;flex-direction:column;gap:16px}
 .lab-why ul{margin:0;padding-left:1.1em;color:var(--deep-muted);display:flex;flex-direction:column;gap:6px;font-size:.95rem}
 .lab-why a{color:var(--deep-ink)}
-.activity{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px;box-shadow:0 8px 24px rgba(22,124,138,.08);padding:24px;display:flex;flex-direction:column;gap:12px}
+.activity{background:var(--surface);color:var(--ink);border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 24px -16px rgba(22,78,74,.35);padding:24px;display:flex;flex-direction:column;gap:12px}
 .activity .ctx{font-size:.95rem;color:var(--muted)}
 .activity h3{font-size:1.2rem}
 .data{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
@@ -164,7 +160,7 @@ dl.spec dd{margin:0}
 /* Processo */
 ol.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px;counter-reset:s}
 ol.steps li{counter-increment:s;display:flex;flex-direction:column;gap:6px;padding-top:12px;border-top:3px solid var(--line);min-width:0}
-ol.steps li.key{border-top-color:var(--signal)}
+ol.steps li.key{border-top-color:var(--highlight)}
 ol.steps li::before{content:counter(s,decimal-leading-zero);font-family:var(--f-mono);font-size:.8rem;color:var(--accent)}
 ol.steps b{font-family:var(--f-display);font-size:1.05rem}
 ol.steps p{font-size:.9rem;color:var(--muted)}
@@ -179,7 +175,7 @@ ol.steps p{font-size:.9rem;color:var(--muted)}
 .cred{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 18px;display:flex;flex-direction:column;gap:4px}
 .cred b{font-family:var(--f-display)}
 .cred p{font-size:.93rem;color:var(--muted)}
-.note{margin-top:28px;background:var(--surface);border:1px solid var(--line);border-left:4px solid var(--signal);border-radius:10px;padding:16px 20px;font-size:.93rem;color:var(--muted)}
+.note{margin-top:28px;background:var(--band-case);border:1px solid var(--line);border-left:4px solid var(--highlight);border-radius:10px;padding:16px 20px;font-size:.93rem;color:var(--muted)}
 .note b{color:var(--ink)}
 
 /* Contato */
@@ -190,6 +186,8 @@ ol.steps p{font-size:.9rem;color:var(--muted)}
 footer{padding-block:28px 44px;color:var(--muted);font-size:.85rem;border-top:1px solid var(--line)}
 
 @media (max-width:900px){
+  .stack{height:300px;margin-top:-8px}
+  .facts{margin-bottom:28px}
   .hero-grid,.lab-grid,.about{grid-template-columns:minmax(0,1fr);gap:32px}
   .deliver ul{grid-template-columns:repeat(3,minmax(0,1fr))}
   .projects,.projects.single .proj{grid-template-columns:minmax(0,1fr)}
@@ -230,11 +228,16 @@ footer{padding-block:28px 44px;color:var(--muted);font-size:.85rem;border-top:1p
         <h1 id="h-hero">Conteúdo técnico transformado em <em>cursos prontos para o AVA</em>.</h1>
         <p class="lead">Recebo o material bruto do especialista e entrego o curso estruturado, diagramado e pronto para publicar: desenho instrucional, identidade visual da instituição, interatividade e acessibilidade.</p>
         <div class="cta"><a class="btn pri" href="#projetos">Ver projetos</a><a class="btn" href="#experimente">Experimentar uma atividade</a></div>
+        <div class="facts" aria-label="Resumo profissional">
+          <div><b>+10 anos</b><span>no setor de educação</span></div>
+          <div><b>Sistemas de Informação</b><span>HTML, CSS e plataformas digitais</span></div>
+          <div><b>Gestão de projetos</b><span>prazos, escopo e status sob controle</span></div>
+        </div>
       </div>
-      <div class="facts" aria-label="Resumo profissional">
-        <div><b>+10 anos</b><span>no setor de educação</span></div>
-        <div><b>Formação em tecnologia</b><span>Sistemas de Informação: HTML, CSS e plataformas digitais</span></div>
-        <div><b>Gestão de projetos</b><span>prazos, escopo e relatórios de status sob controle</span></div>
+      <div class="stack" aria-hidden="true">
+        <img src="assets/thumbs/metas.jpg" alt="">
+        <img src="assets/thumbs/dns.jpg" alt="">
+        <img src="assets/thumbs/phishing.jpg" alt="">
       </div>
     </div>
   </section>
@@ -358,12 +361,12 @@ footer{padding-block:28px 44px;color:var(--muted);font-size:.85rem;border-top:1p
    O filtro por formato aparece sozinho quando houver 4 ou mais projetos visíveis. */
 const MOSTRAR_EM_PRODUCAO = false;
 const PROJETOS = [
-  { titulo:"Design Thinking: da compreensão do problema à construção de soluções", formato:"Curso autoinstrucional · HTML + apostila PDF", tipo:"curso", thumb:"notas", escopo:"Amostra · módulo 1 de 6", publicado:true, link:"design-thinking/index.html", ficha:"#ficha",
+  { titulo:"Design Thinking: da compreensão do problema à construção de soluções", formato:"Curso autoinstrucional · HTML + apostila PDF", tipo:"curso", thumb:"notas", escopo:"Amostra · módulo 1 de 6", publicado:true, link:"design-thinking/index.html", img:"assets/thumbs/dt.jpg", ficha:"#ficha",
     extras:[{rotulo:"Apostila (PDF)", href:"design-thinking/assets/apostila-design-thinking-m1.pdf"}],
     desc:"Módulo 1 de um curso de seis, entregue completo: caso integrador, quatro microunidades com checagem imediata, simulador de decisão com seis cenários e flashcards situacionais. Acompanha apostila diagramada de 19 páginas com exercícios e gabarito.",
     publico:"Profissionais de gestão, processos, inovação e atendimento", carga:"Módulo 1 · cerca de 40 min + apostila de 19 páginas",
     demonstra:["Objetivo de nível Avaliar (Bloom)","Caso integrador","Simulador de decisão","Flashcards","Apostila diagramada","Acessibilidade"] },
-  { titulo:"Metas que Movem Resultados", formato:"Curso autoinstrucional · HTML", tipo:"curso", thumb:"curso", escopo:"Minicurso completo", publicado:true, link:"metas/index.html", ficha:"#sobre",
+  { titulo:"Metas que Movem Resultados", formato:"Curso autoinstrucional · HTML", tipo:"curso", thumb:"curso", escopo:"Minicurso completo", publicado:true, link:"metas/index.html", img:"assets/thumbs/metas.jpg", ficha:"#sobre",
     desc:"Minicurso para gestores sobre desdobramento de metas, mensalização, causa raiz, plano de ação e projeção de resultado, construído em torno de um caso fictício que atravessa todos os módulos.",
     publico:"Gestores e líderes de equipe", carga:"1h30 · 6 módulos e avaliação final",
     demonstra:["Design instrucional","Aprendizagem baseada em caso","7 interações","Avaliação formativa","HTML/CSS/JS","Acessibilidade"] },
@@ -371,11 +374,11 @@ const PROJETOS = [
     desc:"Apostila introdutória com capa, sumário, divisores de módulo e boxes didáticos, a partir de conteúdo técnico bruto.",
     publico:"Iniciantes em TI", carga:"3 capítulos",
     demonstra:["Transposição didática","Diagramação","Identidade visual"] },
-  { titulo:"Esse e-mail é confiável?", formato:"Objeto interativo · HTML", tipo:"objeto", thumb:"quiz", escopo:"Objeto avulso", publicado:true, link:"phishing/index.html", ficha:"#ficha",
+  { titulo:"Esse e-mail é confiável?", formato:"Objeto interativo · HTML", tipo:"objeto", thumb:"quiz", escopo:"Objeto avulso", publicado:true, link:"phishing/index.html", img:"assets/thumbs/phishing.jpg", ficha:"#ficha",
     desc:"Simulador de triagem: o participante inspeciona remetente e link de cinco e-mails de uma universidade fictícia, aponta os sinais de risco e decide o que fazer. Três golpes de tipos diferentes e duas mensagens legítimas, uma delas com urgência, para evitar o viés de que tudo é golpe.",
     publico:"Servidores, docentes e colaboradores de instituições de ensino", carga:"Cerca de 12 min",
     demonstra:["Simulação com inspeção de evidências","Feedback por ação e por sinal","Segurança da informação","Acessibilidade"] },
-  { titulo:"Do endereço à página", formato:"Objeto explicativo · HTML", tipo:"objeto", thumb:"rede", escopo:"Objeto avulso", publicado:true, link:"dns/index.html", ficha:"#ficha",
+  { titulo:"Do endereço à página", formato:"Objeto explicativo · HTML", tipo:"objeto", thumb:"rede", escopo:"Objeto avulso", publicado:true, link:"dns/index.html", img:"assets/thumbs/dns.jpg", ficha:"#ficha",
     desc:"O que acontece entre digitar um endereço e ver a página: sete passos com diagrama de rede gerado por código, ordenação das etapas e diagnóstico de quatro problemas reais de acesso a partir do sintoma.",
     publico:"Iniciantes em TI e profissionais que lidam com sistemas web", carga:"Cerca de 10 min",
     demonstra:["Transposição didática de conteúdo técnico","Diagrama interativo","Ordenação acessível","Diagnóstico"] },
@@ -401,7 +404,7 @@ const list=document.getElementById("projList");
 list.classList.toggle("single",visiveis.length===1);
 list.innerHTML=visiveis.map((p,i)=>`
   <article class="proj" data-tipo="${esc(p.tipo)}" aria-labelledby="pt${i}">
-    <div class="thumb" aria-hidden="true">${THUMBS[p.thumb]||""}</div>
+    ${p.img?`<div class="thumb shot"><img src="${esc(p.img)}" alt="Tela do projeto ${esc(p.titulo)}" loading="lazy"></div>`:`<div class="thumb" aria-hidden="true">${THUMBS[p.thumb]||""}</div>`}
     <div class="proj-body">
       <div class="proj-top"><span class="fmt">${esc(p.formato)}</span>${p.publicado?(p.escopo?`<span class="scope">${esc(p.escopo)}</span>`:""):`<span class="badge">Em produção</span>`}</div>
       <h3 id="pt${i}">${esc(p.titulo)}</h3>
