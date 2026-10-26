@@ -1,0 +1,76 @@
+/* Estilos próprios do simulador de e-mail. A base visual (tokens, layout, componentes) está em base.css. */
+
+/* Ambiente de referência */
+.env { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 10px; margin: 0; }
+.env div { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px 14px; min-width: 0; }
+.env dt { font-size: .8rem; color: var(--muted); }
+.env dd { margin: 0; font-family: var(--f-mono); font-size: .9rem; overflow-wrap: anywhere; }
+
+/* Cartões "onde olhar" */
+.sig-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; }
+.sig-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); padding: 16px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.sig-card p { font-size: .95rem; }
+.sig-card .ex { margin-top: auto; font-family: var(--f-mono); font-size: .8rem; background: var(--band-soft); border-radius: 6px; padding: 8px 10px; overflow-wrap: anywhere; color: var(--ink); }
+mark { background: var(--note-2); color: var(--note-ink); padding: 0 2px; border-radius: 2px; }
+
+/* Caixa de entrada */
+.inbox { display: grid; grid-template-columns: 250px minmax(0, 1fr); gap: 18px; align-items: start; }
+.band--activity > .in:has(.inbox) { max-width: 1040px; }
+.inbox-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; position: sticky; top: 16px; }
+.inbox-item {
+  all: unset; box-sizing: border-box; width: 100%; cursor: pointer;
+  display: flex; flex-direction: column; gap: 2px; padding: 10px 12px;
+  background: var(--card); border: 1px solid var(--line); border-radius: 8px; font-size: .9rem; line-height: 1.35;
+}
+.inbox-item:hover { border-color: var(--accent); }
+.inbox-item:focus-visible { outline: 3px solid var(--highlight); outline-offset: 2px; }
+.inbox-item.is-current { border: 2px solid var(--accent); box-shadow: inset 4px 0 0 var(--accent); }
+.inbox-item .from { font-weight: 700; }
+.inbox-item .subj { color: var(--muted); display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.inbox-item .meta { display: flex; justify-content: space-between; gap: 8px; font-size: .78rem; color: var(--muted); margin-top: 4px; flex-wrap: wrap; }
+.mail-status { font-size: .78rem; font-weight: 700; color: var(--muted); }
+.mail-status.s-ok { color: var(--ok); }
+.mail-status.s-part { color: var(--part); }
+.mail-status.s-bad { color: var(--bad); }
+.inbox-main { display: flex; flex-direction: column; gap: 16px; min-width: 0; }
+
+/* E-mail */
+.mail { background: var(--card); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.mail-head { padding: 18px 20px 14px; border-bottom: 1px solid var(--line); background: var(--band-soft); display: flex; flex-direction: column; gap: 10px; }
+.mail-head h2 { font-size: 1.2rem; }
+.mail-head h2:focus { outline: none; }
+.mail-meta { margin: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 4px 12px; font-size: .92rem; }
+.mail-meta dt { color: var(--muted); }
+.mail-meta dd { margin: 0; overflow-wrap: anywhere; }
+.addr { font-family: var(--f-mono); font-size: .85rem; background: var(--note-1); color: var(--note-ink); padding: 1px 4px; border-radius: 3px; }
+.reveal { font: inherit; font-size: .82rem; font-weight: 700; color: var(--accent); background: var(--accent-soft); border: 1px dashed var(--accent); border-radius: 6px; padding: 2px 8px; cursor: pointer; }
+.mail-body { padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; }
+.mail-link { font: inherit; color: #1A55C4; text-decoration: underline; background: none; border: 0; padding: 0; cursor: pointer; overflow-wrap: anywhere; text-align: left; }
+.mail-cta { font: inherit; font-weight: 700; background: #1A55C4; color: #FFFFFF; border: 0; border-radius: 6px; padding: 10px 18px; cursor: pointer; }
+.link-dest { display: flex; flex-direction: column; gap: 2px; background: var(--note-1); color: var(--note-ink); border-radius: 6px; padding: 8px 12px; }
+.link-dest span { font-size: .78rem; font-weight: 700; text-transform: uppercase; letter-spacing: .06em; }
+.link-dest code { font-family: var(--f-mono); font-size: .88rem; overflow-wrap: anywhere; }
+.attach { display: flex; align-items: center; gap: 10px; border: 1px solid var(--line); border-radius: 8px; padding: 8px 12px; align-self: flex-start; font-size: .92rem; }
+.attach .file { font-family: var(--f-mono); font-size: .7rem; font-weight: 500; background: var(--bad); color: #FFFFFF; border-radius: 3px; padding: 3px 5px; }
+.sign { color: var(--muted); }
+.mail-tip { font-size: .85rem; color: var(--muted); padding: 0 20px 16px; }
+
+/* Análise */
+.opt--none { border-style: dashed; }
+.sig-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 8px; }
+.sig-list li { display: flex; gap: 10px; align-items: flex-start; font-size: .95rem; }
+.sig-list .sym { flex: none; width: 1.2em; font-weight: 700; }
+.sig-list .is-hit .sym { color: var(--ok); }
+.sig-list .is-miss .sym { color: var(--part); }
+.sig-list .is-wrong .sym { color: var(--bad); }
+.tag-kind { font-family: var(--f-mono); font-size: .75rem; font-weight: 500; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 2px 8px; margin-left: 6px; }
+.lesson { background: var(--band-case); border-left: 4px solid var(--highlight); border-radius: 0 8px 8px 0; padding: 12px 16px; display: flex; flex-direction: column; gap: 4px; }
+
+@media (max-width: 1100px) {
+  .inbox { grid-template-columns: minmax(0, 1fr); }
+  .inbox-list { position: static; display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+}
+@media (max-width: 620px) {
+  .inbox-list { grid-template-columns: minmax(0, 1fr); }
+  .mail-head, .mail-body { padding-left: 14px; padding-right: 14px; }
+}

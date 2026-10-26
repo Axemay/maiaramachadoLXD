@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Esse e-mail é confiável?</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@500&display=swap">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/peca.css">
+</head>
+<body>
+<div class="app">
+  <aside class="side" aria-label="Navegação">
+    <div class="side-head">
+      <div class="brand">
+        <b>Esse e-mail é confiável?</b>
+        <span>Maiara Machado · Design Educacional</span>
+      </div>
+      <button type="button" class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="toc">Sumário</button>
+    </div>
+    <div class="prog">
+      <div class="prog-bar" aria-hidden="true"><i id="progFill"></i></div>
+      <span id="progLabel" aria-live="polite">0% concluído</span>
+    </div>
+    <nav class="toc" id="toc" aria-label="Sumário"></nav>
+  </aside>
+  <main id="main" class="main"></main>
+</div>
+<div class="sr" aria-live="polite" id="live"></div>
+
+<!-- Scripts clássicos, na ordem: dados, núcleo, atividade, telas, inicialização. Abre direto do arquivo, sem servidor. -->
+<script src="data/content.js"></script>
+<script src="js/core.js"></script>
+<script src="js/inbox.js"></script>
+<script src="js/screens.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

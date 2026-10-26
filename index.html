@@ -1,9 +1,6 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Portfólio Maiara Machado</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Portfólio de design instrucional e editoração digital educacional de Maiara Machado.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -131,6 +128,10 @@ dl.spec dd{margin:0}
 .story div b{flex:1;background:var(--soft);border-bottom:1px solid var(--line)}
 .story div i{height:5px;margin:6px;border-radius:3px;background:var(--line)}
 
+.net-m{flex:1;position:relative;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(2,1fr);gap:18px 26px;padding:10px 14px}
+.net-m i{background:var(--surface);border:1px solid var(--line);border-radius:6px}
+.net-m i.a{border:2px solid var(--accent);background:var(--accent-soft)}
+.net-m b{position:absolute;left:22%;right:22%;top:50%;border-top:3px dashed #FF9F6E}
 .notes-m{flex:1;display:grid;grid-template-columns:repeat(2,1fr);gap:10px;padding:6px}
 .notes-m i{border-radius:3px;background:#FFE37E;box-shadow:0 6px 12px -8px rgba(0,0,0,.35);transform:rotate(-2deg)}
 .notes-m i:nth-child(2){background:#FFD0C2;transform:rotate(1.5deg)}
@@ -205,9 +206,6 @@ footer{padding-block:28px 44px;color:var(--muted);font-size:.85rem;border-top:1p
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 </style>
-</head>
-<body>
-
 
 <a class="skip" href="#projetos">Pular para os projetos</a>
 
@@ -279,7 +277,7 @@ footer{padding-block:28px 44px;color:var(--muted);font-size:.85rem;border-top:1p
           <li>Alternativas plausíveis, que testam um erro de raciocínio comum.</li>
           <li>Retorno formativo para cada escolha.</li>
         </ul>
-        <a href="metas/#m6" target="_blank" rel="noopener">Abrir o simulador completo no curso →</a>
+        <a href="metas/index.html#m6" target="_blank" rel="noopener">Abrir o simulador completo no curso →</a>
       </div>
       <div class="activity" id="activity">
         <p class="eyebrow" style="color:var(--accent)">Caso Lumen Logística · Módulo 6</p>
@@ -360,24 +358,28 @@ footer{padding-block:28px 44px;color:var(--muted);font-size:.85rem;border-top:1p
    O filtro por formato aparece sozinho quando houver 4 ou mais projetos visíveis. */
 const MOSTRAR_EM_PRODUCAO = false;
 const PROJETOS = [
-  { titulo:"Design Thinking: da compreensão do problema à construção de soluções", formato:"Curso autoinstrucional · HTML + apostila PDF", tipo:"curso", thumb:"notas", escopo:"Amostra · módulo 1 de 6", publicado:true, link:"design-thinking/", ficha:"#ficha",
-    extras:[{rotulo:"Apostila (PDF)", href:"design-thinking/apostila-design-thinking-m1.pdf"}],
+  { titulo:"Design Thinking: da compreensão do problema à construção de soluções", formato:"Curso autoinstrucional · HTML + apostila PDF", tipo:"curso", thumb:"notas", escopo:"Amostra · módulo 1 de 6", publicado:true, link:"design-thinking/index.html", ficha:"#ficha",
+    extras:[{rotulo:"Apostila (PDF)", href:"design-thinking/assets/apostila-design-thinking-m1.pdf"}],
     desc:"Módulo 1 de um curso de seis, entregue completo: caso integrador, quatro microunidades com checagem imediata, simulador de decisão com seis cenários e flashcards situacionais. Acompanha apostila diagramada de 19 páginas com exercícios e gabarito.",
     publico:"Profissionais de gestão, processos, inovação e atendimento", carga:"Módulo 1 · cerca de 40 min + apostila de 19 páginas",
     demonstra:["Objetivo de nível Avaliar (Bloom)","Caso integrador","Simulador de decisão","Flashcards","Apostila diagramada","Acessibilidade"] },
-  { titulo:"Metas que Movem Resultados", formato:"Curso autoinstrucional · HTML", tipo:"curso", thumb:"curso", escopo:"Minicurso completo", publicado:true, link:"metas/", ficha:"#sobre",
+  { titulo:"Metas que Movem Resultados", formato:"Curso autoinstrucional · HTML", tipo:"curso", thumb:"curso", escopo:"Minicurso completo", publicado:true, link:"metas/index.html", ficha:"#sobre",
     desc:"Minicurso para gestores sobre desdobramento de metas, mensalização, causa raiz, plano de ação e projeção de resultado, construído em torno de um caso fictício que atravessa todos os módulos.",
     publico:"Gestores e líderes de equipe", carga:"1h30 · 6 módulos e avaliação final",
     demonstra:["Design instrucional","Aprendizagem baseada em caso","7 interações","Avaliação formativa","HTML/CSS/JS","Acessibilidade"] },
-  { titulo:"Introdução a Redes de Computadores", formato:"E-book diagramado · PDF", tipo:"editoracao", thumb:"livro", publicado:false, link:"redes/",
+  { titulo:"Introdução a Redes de Computadores", formato:"E-book diagramado · PDF", tipo:"editoracao", thumb:"livro", publicado:false, link:"redes/index.html",
     desc:"Apostila introdutória com capa, sumário, divisores de módulo e boxes didáticos, a partir de conteúdo técnico bruto.",
     publico:"Iniciantes em TI", carga:"3 capítulos",
     demonstra:["Transposição didática","Diagramação","Identidade visual"] },
-  { titulo:"Phishing: você cairia?", formato:"Objeto interativo · HTML", tipo:"objeto", thumb:"quiz", publicado:false, link:"phishing/",
-    desc:"Cenários de decisão sobre e-mails suspeitos, com retorno explicativo a cada escolha.",
-    publico:"Usuários de TI em geral", carga:"15 min",
-    demonstra:["Interatividade","Avaliação","Segurança da informação","Acessibilidade"] },
-  { titulo:"Storyboard: videoaula sobre senhas seguras", formato:"Roteiro e storyboard · PDF", tipo:"roteiro", thumb:"story", publicado:false, link:"storyboard/",
+  { titulo:"Esse e-mail é confiável?", formato:"Objeto interativo · HTML", tipo:"objeto", thumb:"quiz", escopo:"Objeto avulso", publicado:true, link:"phishing/index.html", ficha:"#ficha",
+    desc:"Simulador de triagem: o participante inspeciona remetente e link de cinco e-mails de uma universidade fictícia, aponta os sinais de risco e decide o que fazer. Três golpes de tipos diferentes e duas mensagens legítimas, uma delas com urgência, para evitar o viés de que tudo é golpe.",
+    publico:"Servidores, docentes e colaboradores de instituições de ensino", carga:"Cerca de 12 min",
+    demonstra:["Simulação com inspeção de evidências","Feedback por ação e por sinal","Segurança da informação","Acessibilidade"] },
+  { titulo:"Do endereço à página", formato:"Objeto explicativo · HTML", tipo:"objeto", thumb:"rede", escopo:"Objeto avulso", publicado:true, link:"dns/index.html", ficha:"#ficha",
+    desc:"O que acontece entre digitar um endereço e ver a página: sete passos com diagrama de rede gerado por código, ordenação das etapas e diagnóstico de quatro problemas reais de acesso a partir do sintoma.",
+    publico:"Iniciantes em TI e profissionais que lidam com sistemas web", carga:"Cerca de 10 min",
+    demonstra:["Transposição didática de conteúdo técnico","Diagrama interativo","Ordenação acessível","Diagnóstico"] },
+  { titulo:"Storyboard: videoaula sobre senhas seguras", formato:"Roteiro e storyboard · PDF", tipo:"roteiro", thumb:"story", publicado:false, link:"storyboard/index.html",
     desc:"Roteiro de videoaula com storyboard quadro a quadro, narração e indicações de animação.",
     publico:"Usuários de TI em geral", carga:"Vídeo de 4 min",
     demonstra:["Roteirização","Storyboard","Linguagem audiovisual"] }
@@ -390,6 +392,7 @@ const THUMBS={
   livro:`<div class="book"><div class="pg cover"><i></i><i class="s"></i></div><div class="pg"><div class="h"></div><div class="t"></div><div class="t"></div><div class="t" style="width:80%"></div><div class="t"></div><div class="t" style="width:60%"></div></div></div>`,
   quiz:`<div class="quizm"><div class="h"></div><div class="o"></div><div class="o ok"></div><div class="o"></div><div class="o"></div></div>`,
   notas:`<div class="notes-m"><i></i><i></i><i></i><i></i></div>`,
+  rede:`<div class="net-m"><i class="a"></i><i></i><i class="a"></i><i></i><i></i><i class="a"></i><b></b></div>`,
   story:`<div class="story"><div><b></b><i></i></div><div><b></b><i></i></div><div><b></b><i></i></div></div>`
 };
 const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
@@ -437,5 +440,4 @@ choices.forEach(b=>b.addEventListener("click",()=>{
 rs.addEventListener("click",()=>{choices.forEach(x=>{x.setAttribute("aria-pressed","false");x.classList.remove("right","wrong");});fb.hidden=true;rs.hidden=true;choices[0].focus();});
 </script>
 
-</body>
-</html>
+</body></html>
