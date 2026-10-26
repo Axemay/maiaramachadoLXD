@@ -2,6 +2,16 @@
 
 Abra `index.html` no navegador. Cada peça fica na própria pasta e também abre sozinha.
 
+## Página principal
+
+```text
+index.html            Estrutura da página
+css/portfolio.css     Visual (tokens, abertura, cards, seções)
+data/projetos.js      Lista de projetos: edite aqui para incluir, ocultar ou alterar um card
+js/portfolio.js       Cards, filtro, atividade "Experimente" e botão de copiar e-mail
+assets/thumbs/        Capturas das peças usadas nos cards e na abertura
+```
+
 | Pasta | Peça | Formato |
 |---|---|---|
 | `design-thinking/` | Design Thinking: Módulo 1 + apostila em PDF | Curso autoinstrucional |
