@@ -1,6 +1,6 @@
 # Portfólio · Maiara Machado · Design Educacional
 
-Abra `index.html` no navegador. Cada peça fica na própria pasta e também abre sozinha.
+Abra `index.html` no navegador. 
 
 ## Página principal
 
